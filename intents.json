@@ -1,0 +1,66 @@
+{
+  "intents": [
+    {
+      "tag": "cumprimento",
+      "patterns": [
+        "Olá",
+        "Oi",
+        "Como você está?",
+        "Tem alguém aí?",
+        "Qual é",
+        "bom dia"
+      ],
+      "responses": [
+        "Oi :-)",
+        "Obrigado por visitar",
+        "Olá, o que posso fazer?",
+        "Oi, como posso ajudar?"
+      ]
+    },
+    {
+      "tag": "what estoicismo",
+      "patterns": [
+        "O que é estoicismo?",
+        "O que foi estoicismo?",
+        "estoicismo",
+        "Gostaria de saber o que é estoicismo"
+
+      ],
+      "responses": [
+        "Escola filosófica que se caracteriza por uma ética baseada na  imperturbabilidade, a extirpação das paixões e a aceitação resignada do destino.\nEssas seriam as qualidades fundamentais do homem sábio.\nApenas o sábio estaria apto a experimentar a verdadeira felicidade."
+      ]
+    },
+    {
+      "tag": "why estoicismo",
+      "patterns": [" Por que aconteceu o estoicismo?", "Qual motivo do estoicismo?", "Por que?"],
+      "responses": [
+        "O estoicismo seria interessante para qualquer pessoa ocupada com a busca da verdadeira \nfelicidade.\n\nParte do princípio de que o universo seria governado por uma lei natural divina e racional.\n\nPara o ser humano alcançar a verdadeira felicidade, deveria depender apenas da sua “virtude”, \nou seja, os seus conhecimentos e valores, abdicando totalmente do “vício”."
+      ]
+    },
+    {
+      "tag": "when estoicismo",
+      "patterns": ["Quando aconteceu o estoicismo?", "Quando aconteceu?", "Onde aconteceu?", "Em qual lugar surgiu o estoicismo?"],
+      "responses": ["O estoicismo surgiu com Zenão de Citio, no início do século III antes de Cristo. Ela foi tão popular que\npersistiu até 529 depois de Cristo, quando o imperador romano Justiniano ordenou o fechamento de todas as escolas de filosofia\npagã."]
+    },
+    {
+      "tag": "how estoicismo",
+      "patterns": [
+          "Como aconteceu o estoicismo?", "Como aconteceu?", "De que forma ocorreu o estoicismo?", "Como surgiu o estoicismo?", "Como?"
+      ],
+      "responses": [
+        "O estoicismo é uma filolsofia voltada para a eudaimonia (a felicidade ou bem-estar, a arte de viver de acordo com a natureza.\n\nA eudaimonia somente seria alcançada através da virtude pessoal e do auto-controle das emoções.\n\nTal auto-controle somente seria alcançado pela apatheia (a ausência de sofrimento - um estado de espírito próprio daqueles que\nestão livres das perturbações emocionais).\n\nOu seja, o estoicismo vislumbrava um caminho baseado na  repressão e controle de emoções dolorosas e destrutivas, como a raiva, \no medo, a inveja e o ódio."
+      ]
+    },
+    {
+      "tag": "who estoicismo",
+      "patterns": [
+        "Quem?",
+        "Quem foi do estoicismo?",
+        "Quais filósofos do estoicismo?"
+      ],
+      "responses": [
+        "Entre os filósofos estoicos encontram-se:\n\nZenão de Citio (fundador),\nSêneca,\nEpiteto e\nMarco Aurelio (imperador romano)."
+      ]
+    }
+  ]
+}
