@@ -37,62 +37,36 @@ class Chatbox {
     }
 
     onSendButton(chatbox) {
-    var textField = chatbox.querySelector('input');
-    let text1 = textField.value
-    if (text1 === "") {
-        return;
-    }
-
-    let msg1 = { name: "User", message: text1 }
-    this.messages.push(msg1);
-
-    fetch('http://127.0.0.1:5000/predict', {
-        method: 'POST',
-        body: JSON.stringify({ message: text1 }),
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-    .then(r => r.json())
-    .then(r => {
-        let msg2 = { name: "Carol", message: r.answer };
-        this.messages.push(msg2);
-        this.updateChatText(chatbox);
-        textField.value = '';
-
-        // Check if response was found, otherwise prompt with fallback question
-        if (r.answer === "Sorry, I'm not sure what you mean.") {
-
-
-            fetch('http://127.0.0.1:5000/fallback', {
-                method: 'POST',
-                body: JSON.stringify({ message: text1 }),
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            .then(r => r.json())
-            .then(r => {
-                let msg4 = { name: "Carol", message: r.answer };
-                this.messages.push(msg4);
-                this.updateChatText(chatbox);
-                textField.value = '';
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                this.updateChatText(chatbox);
-                textField.value = '';
-            });
+        var textField = chatbox.querySelector('input');
+        let text1 = textField.value
+        if (text1 === "") {
+            return;
         }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        this.updateChatText(chatbox);
-        textField.value = '';
-    });
-}
+
+        let msg1 = { name: "User", message: text1 }
+        this.messages.push(msg1);
+
+        fetch('http://127.0.0.1:5000/predict', {
+            method: 'POST',
+            body: JSON.stringify({ message: text1 }),
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+          })
+          .then(r => r.json())
+          .then(r => {
+            let msg2 = { name: "Carol", message: r.answer };
+            this.messages.push(msg2);
+            this.updateChatText(chatbox)
+            textField.value = ''
+
+        }).catch((error) => {
+            console.error('Error:', error);
+            this.updateChatText(chatbox)
+            textField.value = ''
+          });
+    }
 
     updateChatText(chatbox) {
         var html = '';

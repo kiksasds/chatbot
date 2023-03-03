@@ -24,12 +24,18 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Carol"
-
+bot_name = "Sam"
 
 def fallback_response():
-    return f"Sorry, I'm not sure what you mean."
-
+    subject = tags[fallback_subject_index]
+    print(f"Sorry, I'm not sure what you mean. Do you mean '{subject}'? (yes or no)")
+    response = input().lower()
+    if response == "yes":
+        for intent in intents["intents"]:
+            if intent["tag"] == subject:
+                return random.choice(intent["responses"])
+    else:
+        return "Please rephrase your question."
 
 def get_response(msg):
     sentence = tokenize(msg)
@@ -50,7 +56,7 @@ def get_response(msg):
         max_prob = 0
         max_index = None
         for i, p in enumerate(probs[0]):
-            if p.item() > max_prob and p.item() >= 0.75:
+            if p.item() > max_prob and p.item() >= 0.05:
                 max_prob = p.item()
                 max_index = i
         if max_index is not None:
@@ -63,10 +69,6 @@ def get_response(msg):
 
     fallback_subject_index = predicted.item()
     return fallback_response()
-
-
-def get_fallback_subject_index():
-    return fallback_subject_index
 
 
 if __name__ == "__main__":
