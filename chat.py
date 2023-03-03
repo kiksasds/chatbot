@@ -28,15 +28,8 @@ bot_name = "Carol"
 
 
 def fallback_response():
-    subject = tags[fallback_subject_index]
-    print(f"Sorry, I'm not sure what you mean. Do you mean '{subject}'? (yes or no)")
-    response = input().lower()
-    if response == "yes":
-        for intent in intents["intents"]:
-            if intent["tag"] == subject:
-                return random.choice(intent["responses"])
-    else:
-        return "Please rephrase your question."
+    return f"Sorry, I'm not sure what you mean."
+
 
 def get_response(msg):
     sentence = tokenize(msg)
@@ -53,7 +46,7 @@ def get_response(msg):
     prob = probs[0][predicted.item()]
 
     global fallback_subject_index
-    if prob.item() < 0.99:
+    if prob.item() < 0.999:
         max_prob = 0
         max_index = None
         for i, p in enumerate(probs[0]):
@@ -70,6 +63,10 @@ def get_response(msg):
 
     fallback_subject_index = predicted.item()
     return fallback_response()
+
+
+def get_fallback_subject_index():
+    return fallback_subject_index
 
 
 if __name__ == "__main__":
