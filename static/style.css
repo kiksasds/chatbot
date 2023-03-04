@@ -9,6 +9,8 @@ body {
     font-weight: 400;
     font-size: 100%;
     background: #F1F1F1;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 *, html {
@@ -21,10 +23,18 @@ body {
 
 /* CHATBOX
 =============== */
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .chatbox {
+    /*
     position: absolute;
     bottom: auto;
     right: 600px;
+    */
 }
 
 /* CONTENT IS CLOSE */
