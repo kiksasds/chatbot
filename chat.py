@@ -1,5 +1,6 @@
 import random
 import json
+
 import torch
 
 from model import NeuralNet
@@ -24,18 +25,8 @@ model = NeuralNet(input_size, hidden_size, output_size).to(device)
 model.load_state_dict(model_state)
 model.eval()
 
-bot_name = "Sam"
+bot_name = "Carol"
 
-def fallback_response():
-    subject = tags[fallback_subject_index]
-    print(f"Sorry, I'm not sure what you mean. Do you mean '{subject}'? (yes or no)")
-    response = input().lower()
-    if response == "yes":
-        for intent in intents["intents"]:
-            if intent["tag"] == subject:
-                return random.choice(intent["responses"])
-    else:
-        return "Please rephrase your question."
 
 def get_response(msg):
     sentence = tokenize(msg)
@@ -50,30 +41,18 @@ def get_response(msg):
 
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
-
-    global fallback_subject_index
-    if prob.item() < 0.999:
-        max_prob = 0
-        max_index = None
-        for i, p in enumerate(probs[0]):
-            if p.item() > max_prob and p.item() >= 0.05:
-                max_prob = p.item()
-                max_index = i
-        if max_index is not None:
-            fallback_subject_index = max_index
-            return fallback_response()
-
-    for intent in intents["intents"]:
-        if intent["tag"] == tag:
-            return random.choice(intent["responses"])
-
-    fallback_subject_index = predicted.item()
-    return fallback_response()
+    if prob.item() > 0.999:
+        for intent in intents['intents']:
+            if tag == intent["tag"]:
+                return random.choice(intent['responses']), tag
+    else:
+        return f"Você quis dizer {tag}...?", tag
 
 
 if __name__ == "__main__":
     print("Let's chat! (type 'quit' to exit)")
     while True:
+        # sentence = "do you use credit cards?"
         sentence = input("You: ")
         if sentence == "quit":
             break
