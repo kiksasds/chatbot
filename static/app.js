@@ -37,36 +37,85 @@ class Chatbox {
     }
 
     onSendButton(chatbox) {
-        var textField = chatbox.querySelector('input');
-        let text1 = textField.value
-        if (text1 === "") {
+          var textField = chatbox.querySelector('input');
+          let text1 = textField.value
+          if (text1 === "") {
             return;
+          }
+
+          let msg1 = { name: "User", message: text1 }
+          this.messages.push(msg1);
+          let endpoint = this.useFallback ? 'http://127.0.0.1:5000/fallback' : 'http://127.0.0.1:5000/predict';
+          fetch(endpoint, {
+              method: 'POST',
+              body: JSON.stringify({ message: text1 }),
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then(r => r.json())
+            .then(r => {
+              let msg2 = { name: "Carol", message: r.answer };
+              this.messages.push(msg2);
+              this.updateChatText(chatbox)
+              textField.value = ''
+              if (msg2.message.startsWith('Você quis')){
+                this.useFallback = true;
+                this.waitForUserInput(chatbox);
+              } else {
+                this.useFallback = false;
+              }
+            }).catch((error) => {
+              console.error('Error:', error);
+              this.updateChatText(chatbox)
+              textField.value = ''
+            });
+    }
+
+    waitForUserInput(chatbox) {
+            var textField = chatbox.querySelector('input');
+            textField.value = '';
+            textField.placeholder = "Type your corrected message here and press Enter";
+            const handleKeyDown = (event) => {
+                if (event.key === 'Enter') {
+                    let text2 = textField.value;
+                    let msg3 = { name: "User", message: text2 }
+                    this.messages.push(msg3);
+                    let endpoint = this.useFallback ? 'http://127.0.0.1:5000/fallback' : 'http://127.0.0.1:5000/predict';
+                    fetch(endpoint, {
+                        method: 'POST',
+                        body: JSON.stringify({ message: text2 }),
+                        mode: 'cors',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                    .then(r1 => r1.json())
+                    .then(r1 => {
+                        let msg4 = { name: "Carol", message: r1.answer };
+                        this.messages.push(msg4);
+                        this.updateChatText(chatbox);
+                        textField.value = '';
+                        textField.placeholder = "Type here..."
+                        if (msg4.message.startsWith('You wanted to')){
+                            this.useFallback = true;
+                            this.waitForUserInput(chatbox);
+                        } else {
+                            this.useFallback = false;
+                        }
+                        textField.removeEventListener('keydown', handleKeyDown); // remove event listener
+                    }).catch((error) => {
+                        console.error('Error:', error);
+                        this.updateChatText(chatbox);
+                        textField.value = '';
+                    })
+                }
+            };
+            textField.addEventListener('keydown', handleKeyDown);
         }
 
-        let msg1 = { name: "User", message: text1 }
-        this.messages.push(msg1);
 
-        fetch('http://127.0.0.1:5000/predict', {
-            method: 'POST',
-            body: JSON.stringify({ message: text1 }),
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          })
-          .then(r => r.json())
-          .then(r => {
-            let msg2 = { name: "Carol", message: r.answer };
-            this.messages.push(msg2);
-            this.updateChatText(chatbox)
-            textField.value = ''
-
-        }).catch((error) => {
-            console.error('Error:', error);
-            this.updateChatText(chatbox)
-            textField.value = ''
-          });
-    }
 
     updateChatText(chatbox) {
         var html = '';
