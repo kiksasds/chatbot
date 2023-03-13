@@ -29,7 +29,7 @@ def predict():
 def fallback():
     global tag
     text = request.get_json().get("message")
-    if text == 'yes':
+    if text == 'sim' or text == 'Sim':
         for intent in intents['intents']:
             if tag == intent["tag"]:
                 response = random.choice(intent['responses'])
