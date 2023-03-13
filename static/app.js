@@ -60,7 +60,7 @@ class Chatbox {
               this.messages.push(msg2);
               this.updateChatText(chatbox)
               textField.value = ''
-              if (msg2.message.startsWith('Você quis')){
+              if (msg2.message.startsWith('Desculpe')){
                 this.useFallback = true;
                 this.waitForUserInput(chatbox);
               } else {
@@ -76,7 +76,7 @@ class Chatbox {
     waitForUserInput(chatbox) {
             var textField = chatbox.querySelector('input');
             textField.value = '';
-            textField.placeholder = "Type your corrected message here and press Enter";
+            textField.placeholder = "Digite sua mensagem correta aqui e pressione Enter";
             const handleKeyDown = (event) => {
                 if (event.key === 'Enter') {
                     let text2 = textField.value;
@@ -97,8 +97,8 @@ class Chatbox {
                         this.messages.push(msg4);
                         this.updateChatText(chatbox);
                         textField.value = '';
-                        textField.placeholder = "Type here..."
-                        if (msg4.message.startsWith('You wanted to')){
+                        textField.placeholder = "Digite aqui..."
+                        if (msg4.message.startsWith('Desculpe')){
                             this.useFallback = true;
                             this.waitForUserInput(chatbox);
                         } else {
