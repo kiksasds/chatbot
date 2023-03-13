@@ -41,18 +41,17 @@ def get_response(msg):
 
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
-    if prob.item() > 0.999:
+    if prob.item() > 0.99:
         for intent in intents['intents']:
             if tag == intent["tag"]:
                 return random.choice(intent['responses']), tag
     else:
-        return f"Você quis dizer {tag}...?", tag
+        return f"Desculpe, não entendi o que você quis dizer. Você perguntou sobre '{tag}'...?", tag
 
 
 if __name__ == "__main__":
     print("Let's chat! (type 'quit' to exit)")
     while True:
-        # sentence = "do you use credit cards?"
         sentence = input("You: ")
         if sentence == "quit":
             break
