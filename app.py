@@ -14,6 +14,9 @@ tag = None
 def index_get():
     return render_template("base.html")
 
+@app.get("/form")
+def form_get():
+    return render_template("form.html")
 
 @app.post("/predict")
 def predict():
