@@ -49,27 +49,21 @@ bs.innerText = "Enviar";
 f.appendChild(bs);
 bs.onclick = () => {
 	d = new Object();
-	d.t = it.value;
-	d.q = [];
-	iqs.forEach((v) => {d.q.push(v.value)});
-	d.a = [];
-	ias.forEach((v) => {d.a.push(v.value)});
+	d.tag = it.value;
+	d.patterns = [];
+	iqs.forEach((v) => {d.patterns.push(v.value)});
+	d.responses = [];
+	ias.forEach((v) => {d.responses.push(v.value)});
 
 	console.log(JSON.stringify(d));
 
-	fetch('http://127.0.0.1:3000/', {
+	fetch('http://127.0.0.1:5000/form', {
 		method: 'POST',
 		body: JSON.stringify({ message: d }),
 		mode: 'cors',
 		headers: {
 		  'Content-Type': 'application/json'
 		}
-	})
-	.then(r => {r.json();console.log('1');})
-	.then(r => {
-		//this.sendButton.innerText += r.answer
-		console.log('2');
-		console.log(r.answer);
 	})
 	.catch((error) => {
 		console.error('Error:', error);

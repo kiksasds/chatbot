@@ -40,6 +40,19 @@ def fallback():
         message = {"answer": response}
         return jsonify(message)
 
+@app.post("/form")
+def form():
+    text = request.get_json().get("message")
+    with open('intents.json', 'r+', encoding='utf-8') as f:
+        intents = json.load(f)
+        print(intents)
+        print(intents['intents'])
+        intents['intents'].append(text)
+        f.seek(0)
+        json.dump(intents, f)
+        f.truncate()
+    return text
+
 
 if __name__ == "__main__":
     app.run(debug=True)
