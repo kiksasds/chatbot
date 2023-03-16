@@ -47,12 +47,10 @@ def fallback():
 def form():
     text = request.get_json().get("message")
     with open('intents.json', 'r+', encoding='utf-8') as f:
-        intents = json.load(f)
-        print(intents)
-        print(intents['intents'])
-        intents['intents'].append(text)
+        novo = json.load(f)
+        novo['intents'].append(text)
         f.seek(0)
-        json.dump(intents, f)
+        f.write(json.dumps(novo, indent=2, ensure_ascii=False))
         f.truncate()
     return text
 
