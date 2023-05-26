@@ -12,6 +12,13 @@ function cb(){
 	return b;
 }
 
+//cria e seta header
+function ch(t) {
+    h = document.createElement("header");
+    h.textContent = t;
+    return h;
+}
+
 //adiciona input a div
 function ai(d, is, b){
 	is.push(ci());
@@ -20,15 +27,17 @@ function ai(d, is, b){
 }
 
 //cria e seta formulario
-//f = document.createElement("form");
-//document.body.appendChild(f);
 f = document.getElementsByTagName("form")[0];
 
 //campos input para recuperar valores
 it = ci();
+ht = ch("Tag:");
+f.appendChild(ht);
 f.appendChild(it);
 
 dq = document.createElement("div");
+hq = ch("Perguntas:");
+f.appendChild(hq);
 f.appendChild(dq);
 iqs = [];
 bq = cb();
@@ -37,6 +46,8 @@ dq.appendChild(bq);
 bq.onclick = () =>{ai(dq, iqs, bq);}
 
 da = document.createElement("div");
+ha = ch("Respostas:");
+f.appendChild(ha);
 f.appendChild(da);
 ias = [];
 ba = cb();
@@ -51,10 +62,15 @@ bs.onclick = () => {
 	d = new Object();
 	d.tag = it.value;
 	d.patterns = [];
-	iqs.forEach((v) => {d.patterns.push(v.value)});
+	iqs.forEach((v) => {if(v.value != "") d.patterns.push(v.value)});
 	d.responses = [];
-	ias.forEach((v) => {d.responses.push(v.value)});
+	ias.forEach((v) => {if(v.value != "") d.responses.push(v.value)});
 
+    if((d.tag == "") || (d.patterns == []) || (d.responses == [])){
+        if(d.tag == "") ht.innerText = "Em branco Tag:";
+        if(d.patterns == []) hq.innerText = "Em branco Perguntas:";
+        if(d.responses == []) ha.innerText = "Em branco Respostas:";
+    }
 	console.log(JSON.stringify(d));
 
 	fetch('http://127.0.0.1:5000/form', {
