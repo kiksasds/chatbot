@@ -79,20 +79,6 @@
         "O racionalismo é uma corrente filosófica que destaca a razão como fonte primária do conhecimento. Isso significa que a razão e a lógica são usadas para compreender o mundo e resolver problemas, ao invés da experiência empírica ou da tradição.",
         "O racionalismo é uma abordagem filosófica que acredita que a razão é a principal fonte de conhecimento, e que é através do raciocínio e da lógica que podemos entender o mundo. Ele se opõe à ideia de que a experiência empírica ou a tradição são as únicas maneiras de se chegar ao conhecimento."
       ]
-    },
-    {
-      "tag": "tag1",
-      "patterns": [
-        "perg1"
-      ],
-      "responses": [
-        "resp1"
-      ]
-    },
-    {
-      "tag": "",
-      "patterns": [],
-      "responses": []
     }
   ]
 }
