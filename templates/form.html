@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
 <head>
     <meta charset="UTF-8">
 </head>
 <body>
+<a href="{{url_for('index_get')}}"><button>Chat</button></a>
 <form></form>
 <script type="text/javascript" src="{{ url_for('static', filename='form.js') }}"></script>
 </body>

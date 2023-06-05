@@ -1,0 +1,13 @@
+body {
+    background-color: #68912e;
+    display: flex;
+    justify-content: space-evenly;
+}
+form {
+    background-color: #fff;
+    border: solid #e3e3e3;
+    border-radius: 6px;
+    width: 80%;
+}
+header {padding: 4px 10px;}
+input {width: 95%;}
