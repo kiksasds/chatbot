@@ -3,6 +3,17 @@ body {
     display: flex;
     justify-content: space-evenly;
 }
+button {
+    margin-left: 1%;
+    margin-bottom: 1em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    background: #446613;
+    border-radius: 7px;
+    color: white;
+}
 form {
     background-color: #fff;
     border: solid #e3e3e3;
@@ -10,4 +21,8 @@ form {
     width: 80%;
 }
 header {padding: 4px 10px;}
-input {width: 95%;}
+input {
+    width: 97%;
+    margin-bottom: 1em;
+    margin-left: 1%;
+}
