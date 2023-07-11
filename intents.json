@@ -1,83 +1,103 @@
 {
   "intents": [
     {
-      "tag": "cumprimento",
+      "tag": "o que é Arquitetura de Computadores",
+      "patterns": [
+        "O que é arquitetura de computadores?",
+        "Defina arquitetura de  computadores",
+        "Me explique a arquitetura de computadores",
+        "Me fale sobre a arquitetura de computadores"
+
+      ],
+      "responses": [
+        "A arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo.",
+        "Arquitetura de Computador” refere-se aos atributos que são vistos pelo programador. Por exemplo, conjunto de instruções, número de bits de representação dos dados, endereçamento de memória e mecanismos de entrada e saída, são exemplos de atributos de arquitetura de computadores"
+      ]
+    },
+      {
+      "tag": "Cumprimento",
       "patterns": [
         "Olá",
-        "Oi",
-        "Como você está?",
-        "Tem alguém aí?",
-        "Bom dia"
+        "Oi"
+
       ],
       "responses": [
-        "Oi! Como posso ajudar você?",
-        "Oi, como posso te ajudar?"
+        "Olá, como está? Sou um chatbot responsável por retirar suas dúvidas"
+
+      ]
+    },
+     {
+      "tag": "Quais são os componentes de um computador",
+      "patterns": [
+        "Quais são os componentes da organização de um computador?"
+
+      ],
+      "responses": [
+        "Os componentes da organização de um computador incluem a unidade central de processamento (CPU), a memória, os dispositivos de entrada/saída (E/S), o barramento do sistema e o controlador de interrupções."
+      ]
+    },
+      {
+      "tag": "o que é Processador",
+      "patterns": [
+        "O que é um processador?",
+        "Defina processador"
+      ],
+      "responses": [
+        "Um processador, também conhecido como unidade central de processamento (CPU), é o componente principal de um computador responsável por executar instruções e realizar operações lógicas e aritméticas em dados.",
+        "O processador é responsável por processar informações, controlar as operações do computador e executar programas."
       ]
     },
     {
-      "tag": "o que é estoicismo",
+      "tag": "o que é Memória RAM",
       "patterns": [
-        "O que é estoicismo?",
-        "Gostaria de saber sobre o estoicismo",
-        "Pode me explicar o estoicismo?"
+        "O que é Memória RAM?",
+        "Defina Memória RAM"
       ],
       "responses": [
-        "O estoicismo é uma escola filosófica que busca a imperturbabilidade, a extirpação das paixões e a aceitação resignada do destino. Essas são as qualidades fundamentais do homem sábio, que estaria apto a experimentar a verdadeira felicidade."
+        "A Memória RAM (Random Access Memory) é um tipo de memória volátil utilizada pelos computadores para armazenar dados e instruções temporariamente enquanto o sistema está em execução.",
+        "A Memória RAM é responsável por fornecer acesso rápido aos dados necessários para o funcionamento do computador."
       ]
     },
     {
-      "tag": "why estoicismo",
+      "tag": "o que é Barramento do Sistema",
       "patterns": [
-        "Qual é o propósito do estoicismo?",
-        "Por que devo me interessar pelo estoicismo?",
-        "Por que o estoicismo é relevante?"
+        "O que é o Barramento do Sistema?",
+        "Defina Barramento do Sistema"
       ],
       "responses": [
-        "O estoicismo é interessante para qualquer pessoa que busca a verdadeira felicidade. Ele parte do princípio de que o universo é governado por uma lei natural divina e racional. Para alcançar a verdadeira felicidade, devemos depender apenas da nossa virtude, ou seja, nossos conhecimentos e valores, abdicando totalmente do vício."
+        "O Barramento do Sistema é um conjunto de linhas de comunicação que permite a transferência de dados entre os diferentes componentes de um computador, como o processador, a memória e os dispositivos de entrada/saída.",
+        "O Barramento do Sistema atua como uma via de comunicação para transmitir informações e controlar o fluxo de dados dentro do computador."
       ]
     },
     {
-      "tag": "when estoicismo",
+      "tag": "Quando surgiu o Processador",
       "patterns": [
-        "Quando surgiu o estoicismo?",
-        "Onde e quando o estoicismo teve origem?",
-        "Em qual período o estoicismo floresceu?"
+        "Quando foi inventado o processador?",
+        "Qual foi o ano de surgimento do processador?",
+        "Quando surgiu o Processador?"
       ],
       "responses": [
-        "O estoicismo surgiu com Zenão de Citio no início do século III a.C. Essa filosofia foi tão popular que persistiu até 529 d.C., quando o imperador romano Justiniano ordenou o fechamento de todas as escolas de filosofia pagã."
+        "O primeiro processador comercialmente viável, o Intel 4004, foi lançado em 1971."
       ]
     },
     {
-      "tag": "how estoicismo",
+      "tag": "Como funciona um Processador",
       "patterns": [
-        "Como funciona o estoicismo?",
-        "Como posso praticar o estoicismo?",
-        "Quais são os princípios do estoicismo?"
+        "Como um processador funciona?",
+        "Explique o funcionamento de um processador"
       ],
       "responses": [
-       "O estoicismo é uma filosofia voltada para a eudaimonia, que é a felicidade ou bem-estar alcançado através da arte de viver de acordo com a natureza. Para alcançar a eudaimonia, devemos buscar a virtude pessoal e o autocontrole das emoções. O estoicismo enfatiza a apatheia, que é a ausência de sofrimento, um estado de espírito próprio daqueles que estão livres das perturbações emocionais, como raiva, medo, inveja e ódio."
+        "Um processador funciona executando instruções sequencialmente a partir da memória, decodificando-as e executando as operações correspondentes nos dados armazenados em seus registradores internos. Ele possui uma unidade de controle responsável por coordenar essas operações e controlar o fluxo de dados e instruções dentro do processador."
       ]
     },
     {
-      "tag": "who estoicismo",
+      "tag": "Por que o Processador é importante",
       "patterns": [
-        "Quem foram os filósofos estoicos?",
-        "Quais são os principais filósofos do estoicismo?",
-        "Quem contribuiu para o estoicismo?"
+        "Por que o processador é um componente importante?",
+        "Qual é a importância do processador em um computador?"
       ],
       "responses": [
-        "Entre os filósofos estoicos mais conhecidos estão Zenão de Citio, Sêneca, Epiteto e Marco Aurélio, que foi imperador romano."
-      ]
-    },
-    {
-      "tag": "o que é racionalismo",
-      "patterns": [
-        "O que é o racionalismo?",
-        "Qual é a definição de racionalismo?"
-      ],
-      "responses": [
-        "O racionalismo é uma corrente filosófica que destaca a razão como fonte primária do conhecimento. Isso significa que a razão e a lógica são usadas para compreender o mundo e resolver problemas, ao invés da experiência empírica ou da tradição.",
-        "O racionalismo é uma abordagem filosófica que acredita que a razão é a principal fonte de conhecimento, e que é através do raciocínio e da lógica que podemos entender o mundo. Ele se opõe à ideia de que a experiência empírica ou a tradição são as únicas maneiras de se chegar ao conhecimento."
+        "O processador é o cérebro do computador, responsável por realizar todas as operações de processamento de dados. Ele executa as instruções dos programas, manipula os dados e coordena o funcionamento de todos os outros componentes do sistema. A qualidade e o desempenho do processador têm um impacto significativo no desempenho geral do computador."
       ]
     }
   ]
