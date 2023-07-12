@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import random
 import json
-from database import cadastrar_usuario, exibir_usuarios
+from database import cadastrar_usuario, exibir_usuarios, entar_usuario
 from chat import get_response
 
 app = Flask(__name__)
@@ -11,13 +11,30 @@ with open('intents.json', 'r', encoding='utf-8') as json_data:
 
 tag = None
 
-@app.get("/")
+
+@app.get("/base")
 def index_get():
     return render_template("base.html")
+
+@app.get("/")
+def login_get():
+    return render_template("login.html")
+@app.post("/login")
+def login_post():
+    # Obter os dados do formulário
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    if entar_usuario(username, password):
+        return render_template("base.html")
+    else:
+        return render_template("cadastro.html")
+
 
 @app.get("/form")
 def form_get():
     return render_template("form.html")
+
 
 @app.post("/predict")
 def predict():
@@ -44,6 +61,7 @@ def fallback():
         message = {"answer": response}
         return jsonify(message)
 
+
 @app.post("/form")
 def form():
     text = request.get_json().get("message")
@@ -54,6 +72,7 @@ def form():
         f.write(json.dumps(novo, indent=2, ensure_ascii=False))
         f.truncate()
     return text
+
 
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
@@ -71,7 +90,6 @@ def cadastro():
     else:
         # Exibir o formulário de cadastro
         return render_template("cadastro.html")
-
 
 
 if __name__ == "__main__":
