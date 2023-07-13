@@ -12,28 +12,62 @@ with open('intents.json', 'r', encoding='utf-8') as json_data:
 tag = None
 
 
-@app.get("/base")
-def index_get():
-    return render_template("base.html")
+@app.route("/")
+def root():
+    return redirect('/login')
 
-@app.get("/")
-def login_get():
-    return render_template("login.html")
-@app.post("/login")
-def login_post():
-    # Obter os dados do formulário
-    username = request.form.get("username")
-    password = request.form.get("password")
 
-    if entar_usuario(username, password):
-        return render_template("base.html")
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        # Obter os dados do formulário
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if entar_usuario(username, password):
+            return redirect('/base')
+        else:
+            return redirect('/cadastro')
+
+    return render_template('login.html')
+
+
+@app.route("/cadastro", methods=["GET", "POST"])
+def cadastro():
+    if request.method == "POST":
+        # Obter os dados do formulário
+        username = request.form.get("username")
+        registration = request.form.get("registration")
+        password = request.form.get("password")
+
+        # Salvar os dados no banco de dadosap
+        cadastrar_usuario(username, registration, password)
+        exibir_usuarios()
+        # Redirecionar para a página de cadastro com a mensagem de sucesso na URL
+        return redirect('/login')
     else:
+        # Exibir o formulário de cadastro
         return render_template("cadastro.html")
 
 
-@app.get("/form")
-def form_get():
-    return render_template("form.html")
+@app.route('/base')
+def base():
+    return render_template('base.html')
+
+
+@app.route('/form', methods=['POST', 'GET'])
+def form():
+    if request.method == 'POST':
+        text = request.get_json().get("message")
+        with open('intents.json', 'r+', encoding='utf-8') as f:
+            novo = json.load(f)
+            novo['intents'].append(text)
+            f.seek(0)
+            f.write(json.dumps(novo, indent=2, ensure_ascii=False))
+            f.truncate()
+        return text
+
+    return render_template('form.html')
 
 
 @app.post("/predict")
@@ -60,36 +94,6 @@ def fallback():
         response = "Reescreva a pergunta..."
         message = {"answer": response}
         return jsonify(message)
-
-
-@app.post("/form")
-def form():
-    text = request.get_json().get("message")
-    with open('intents.json', 'r+', encoding='utf-8') as f:
-        novo = json.load(f)
-        novo['intents'].append(text)
-        f.seek(0)
-        f.write(json.dumps(novo, indent=2, ensure_ascii=False))
-        f.truncate()
-    return text
-
-
-@app.route("/cadastro", methods=["GET", "POST"])
-def cadastro():
-    if request.method == "POST":
-        # Obter os dados do formulário
-        username = request.form.get("username")
-        registration = request.form.get("registration")
-        password = request.form.get("password")
-
-        # Salvar os dados no banco de dadosap
-        cadastrar_usuario(username, registration, password)
-        exibir_usuarios()
-        # Redirecionar para a página de cadastro com a mensagem de sucesso na URL
-        return redirect(url_for("cadastro", sucesso=True))
-    else:
-        # Exibir o formulário de cadastro
-        return render_template("cadastro.html")
 
 
 if __name__ == "__main__":

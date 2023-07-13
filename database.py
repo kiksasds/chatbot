@@ -9,7 +9,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS users
                   (id INTEGER PRIMARY KEY AUTOINCREMENT,
                   username TEXT NOT NULL,
                   registration TEXT NOT NULL,
-                  password TEXT NOT NULL)''')
+                  password TEXT NOT NULL,
+                  tutor BOOLEAN DEFAULT FALSE)''')
 conn.commit()
 
 
@@ -46,19 +47,12 @@ def entar_usuario(username, password):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
 
-    print(f"UN: "+str(username))
-    print(f"Up: "+str(password))
-
     # Executa a consulta SQL para recuperar os usuários
     cursor.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password,))
     usuario = cursor.fetchone()
 
     # Fecha a conexão com o banco de dados
     conn.close()
-
-    print(f"ID: {usuario[0]}")
-    print(f"Usuário: {usuario[1]}")
-    print(f"Matrícula: {usuario[2]}")
 
     if usuario is None:
         return False
