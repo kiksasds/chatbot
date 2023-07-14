@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import random
 import json
-from database import cadastrar_usuario, exibir_usuarios, entar_usuario
+from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor
 from chat import get_response
 
 app = Flask(__name__)
+app.secret_key = 'ChaveSecreta'
 
 with open('intents.json', 'r', encoding='utf-8') as json_data:
     intents = json.load(json_data)
@@ -14,6 +15,8 @@ tag = None
 
 @app.route("/")
 def root():
+    if 'username' in session:
+        return redirect('/base')
     return redirect('/login')
 
 
@@ -21,15 +24,23 @@ def root():
 def login():
     if request.method == 'POST':
         # Obter os dados do formulário
-        username = request.form.get("username")
+        username = request.form['username']
         password = request.form.get("password")
 
         if entar_usuario(username, password):
+            session['username'] = username
             return redirect('/base')
         else:
             return redirect('/cadastro')
 
     return render_template('login.html')
+
+
+@app.route("/logout")
+def logout():
+    # remove the username from the session if it is there
+    session.pop('username', None)
+    return redirect('/')
 
 
 @app.route("/cadastro", methods=["GET", "POST"])
@@ -57,6 +68,8 @@ def base():
 
 @app.route('/form', methods=['POST', 'GET'])
 def form():
+    if not is_tutor(session['username']):
+        return 'you :'+session['username']+' does not have permission '+"<a href='/'>Home</a>"
     if request.method == 'POST':
         text = request.get_json().get("message")
         with open('intents.json', 'r+', encoding='utf-8') as f:

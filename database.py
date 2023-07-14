@@ -58,3 +58,19 @@ def entar_usuario(username, password):
         return False
     else:
         return True
+
+
+def is_tutor(username):
+    # Conexão com o banco de dados
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Executa a consulta SQL para recuperar os usuários
+    cursor.execute("SELECT tutor FROM users WHERE username=?", (username,))
+
+    bol = cursor.fetchone()[0]
+
+    # Fecha a conexão com o banco de dados
+    conn.close()
+
+    return bol
