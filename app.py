@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import random
 import json
-from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor
+from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration
 from chat import get_response
 
 app = Flask(__name__)
@@ -29,12 +29,15 @@ def login():
 
         if entar_usuario(username, password):
             session['username'] = username
+            session['registration'] = get_registration(username)
             return redirect('/base')
         else:
-            return redirect('/cadastro')
+            return redirect(url_for('login', erro=True))
 
-    return render_template('login.html')
+    # Verificar se a mensagem de sucesso está presente na URL
+    sucesso = request.args.get("sucesso")
 
+    return render_template('login.html', sucesso=sucesso)
 
 @app.route("/logout")
 def logout():
@@ -43,27 +46,30 @@ def logout():
     return redirect('/')
 
 
-@app.route("/cadastro", methods=["GET", "POST"])
+
+@app.route('/cadastro', methods=['POST'])
 def cadastro():
-    if request.method == "POST":
-        # Obter os dados do formulário
-        username = request.form.get("username")
-        registration = request.form.get("registration")
-        password = request.form.get("password")
+    # Obter os dados do formulário
+    username = request.form.get("username")
+    registration = request.form.get("registration")
+    password = request.form.get("password")
+    tutor = request.form.get("tutor") == "on"
 
-        # Salvar os dados no banco de dadosap
-        cadastrar_usuario(username, registration, password)
-        exibir_usuarios()
-        # Redirecionar para a página de cadastro com a mensagem de sucesso na URL
-        return redirect('/login')
-    else:
-        # Exibir o formulário de cadastro
-        return render_template("cadastro.html")
+    # Cadastrar o usuário no banco de dados
+    cadastrar_usuario(username, registration, password, tutor)
+    exibir_usuarios()
 
+    # Redirecionar para a página de login com uma mensagem de sucesso
+    return redirect(url_for('login', sucesso=True))
 
 @app.route('/base')
 def base():
-    return render_template('base.html')
+    # Obter o nome de usuário e a matrícula da sessão
+    username = session.get('username')
+    registration = session.get('registration')
+
+    # Passar o nome de usuário e a matrícula para o template
+    return render_template('base.html', username=username, registration=registration)
 
 
 @app.route('/form', methods=['POST', 'GET'])
@@ -108,6 +114,13 @@ def fallback():
         message = {"answer": response}
         return jsonify(message)
 
+@app.route('/sair', methods=['POST'])
+def sair():
+    # Limpar a sessão
+    session.clear()
+
+    # Redirecionar para a página de login
+    return redirect(url_for('login'))
 
 if __name__ == "__main__":
     app.run(debug=True)

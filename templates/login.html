@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        <label>Nome</label>
-        <input type="text" name="username">
-        <label>Senha</label>
-        <input type="text" name="password">
-        <input type="submit" value="Enviar">
-        <input type="button" value="Inscrever">
-    </form>
+    <div class="login">
+        <h2 id="entrar" class="active">Entrar</h2>
+        <h2 id="inscrever" class="nonactive">Inscreva-se</h2>
+        <form action="/login" method="post">
+            <input type="text" class="text" name="username" placeholder="Usuário">
+            <br>
+            <br>
+            <input type="password" class="text" name="password" placeholder="Senha">
+            <br>
+            <button class="signin" type="submit">Entrar</button>
+            <hr>
+        </form>
+    </div>
+{% if sucesso %}
+<script>
+  alert("Usuário cadastrado com sucesso!");
+</script>
+{% endif %}
+
 </body>
 </html>

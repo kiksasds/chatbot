@@ -15,9 +15,9 @@ conn.commit()
 
 
 # Função para cadastrar um novo usuário
-def cadastrar_usuario(username, registration, password):
-    cursor.execute("INSERT INTO users (username, registration, password) VALUES (?, ?, ?)",
-                   (username, registration, password))
+def cadastrar_usuario(username, registration, password, tutor):
+    cursor.execute("INSERT INTO users (username, registration, password, tutor) VALUES (?, ?, ?, ?)",
+                   (username, registration, password, tutor))
     conn.commit()
     print("Usuário cadastrado com sucesso.")
 
@@ -39,6 +39,8 @@ def exibir_usuarios():
         print(f"ID: {usuario[0]}")
         print(f"Usuário: {usuario[1]}")
         print(f"Matrícula: {usuario[2]}")
+        print(f"Senha: {usuario[3]}")
+        print(f"Tutor: {usuario[4]}")
         print()
 
 
@@ -74,3 +76,8 @@ def is_tutor(username):
     conn.close()
 
     return bol
+
+def get_registration(username):
+    cursor.execute("SELECT registration FROM users WHERE username=?", (username,))
+    registration = cursor.fetchone()[0]
+    return registration

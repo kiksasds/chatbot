@@ -45,7 +45,21 @@
         </div>
     </div>
 </div>
+<div class="user-info">
+    <!-- Exibir o nome de usuário -->
+    <p>Usuário: {{ username }}</p>
 
+    <!-- Exibir a matrícula -->
+    <p>Matrícula: {{ registration }}</p>
+
+    <!-- Adicionar um ícone ao lado esquerdo do nome do usuário -->
+    <img src="profile-icon.png" alt="Ícone de perfil">
+
+    <!-- Adicionar um botão de sair -->
+    <form action="/sair" method="post">
+        <input type="submit" value="Sair">
+    </form>
+</div>
     <script>
         $SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
