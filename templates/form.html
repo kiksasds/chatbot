@@ -5,8 +5,49 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<a href="{{url_for('base')}}"><button>Chat</button></a>
-<form></form>
-<script type="text/javascript" src="{{ url_for('static', filename='form.js') }}"></script>
+    <div class="container">
+        <div class="buttons-container">
+            <a href="{{url_for('base')}}"><button>Chat</button></a>
+            <button id="download-button">Baixar perguntas</button>
+            <button id="train-button">Treinar</button>
+        </div>
+        <form></form>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='form.js') }}"></script>
+    <script>
+        document.getElementById("download-button").addEventListener("click", function() {
+
+            fetch('/unanswered_questions')
+                .then(response => response.json())
+                .then(data => {
+
+                    let content = "Pergunta,Usuário,Matrícula\n";
+                    data.forEach(question => {
+                        content += `${question.question},${question.username},${question.registration}\n`;
+                    });
+
+
+                    let blob = new Blob([content], {type: "text/csv;charset=utf-8"});
+                    let url = URL.createObjectURL(blob);
+                    let a = document.createElement("a");
+                    a.href = url;
+                    a.download = "unanswered_questions.csv";
+                    a.click();
+                });
+        });
+    </script>
+    <script>
+        document.getElementById("train-button").addEventListener("click", function() {
+
+            fetch('/train', {method: 'POST'})
+                .then(response => {
+                    if (response.ok) {
+                        alert("Chatbot treinado com sucesso!");
+                    } else {
+                        alert("Ocorreu um erro ao treinar o chatbot.");
+                    }
+                });
+        });
+    </script>
 </body>
 </html>

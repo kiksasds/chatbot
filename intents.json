@@ -7,36 +7,32 @@
         "Defina arquitetura de  computadores",
         "Me explique a arquitetura de computadores",
         "Me fale sobre a arquitetura de computadores"
-
       ],
       "responses": [
         "A arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo.",
         "Arquitetura de Computador” refere-se aos atributos que são vistos pelo programador. Por exemplo, conjunto de instruções, número de bits de representação dos dados, endereçamento de memória e mecanismos de entrada e saída, são exemplos de atributos de arquitetura de computadores"
       ]
     },
-      {
+    {
       "tag": "Cumprimento",
       "patterns": [
         "Olá",
         "Oi"
-
       ],
       "responses": [
         "Olá, como está? Sou um chatbot responsável por retirar suas dúvidas"
-
       ]
     },
-     {
+    {
       "tag": "Quais são os componentes de um computador",
       "patterns": [
         "Quais são os componentes da organização de um computador?"
-
       ],
       "responses": [
         "Os componentes da organização de um computador incluem a unidade central de processamento (CPU), a memória, os dispositivos de entrada/saída (E/S), o barramento do sistema e o controlador de interrupções."
       ]
     },
-      {
+    {
       "tag": "o que é Processador",
       "patterns": [
         "O que é um processador?",
@@ -98,6 +94,28 @@
       ],
       "responses": [
         "O processador é o cérebro do computador, responsável por realizar todas as operações de processamento de dados. Ele executa as instruções dos programas, manipula os dados e coordena o funcionamento de todos os outros componentes do sistema. A qualidade e o desempenho do processador têm um impacto significativo no desempenho geral do computador."
+      ]
+    },
+    {
+      "tag": "Como funciona a memória cache?",
+      "patterns": [
+        "Explique o funcionamento da memória cache?",
+        "Como a memória cache otimiza o desempenho do computador?",
+        "Como funciona a memória cache?"
+      ],
+      "responses": [
+        "A memória cache é uma memória de alta velocidade que armazena cópias dos dados mais frequentemente acessados pela CPU. Ela funciona como um buffer entre a CPU e a memória principal, reduzindo o tempo de acesso aos dados. Quando a CPU precisa de um dado, ela primeiro verifica se ele está na memória cache. Se estiver, o acesso é rápido. Caso contrário, o dado é buscado na memória principal e, se necessário, é armazenado na cache para acesso futuro."
+      ]
+    },
+    {
+      "tag": "Por que a arquitetura de 64 bits é importante",
+      "patterns": [
+        "Qual é a importância da arquitetura de 64 bits?",
+        "Por que a arquitetura de 64 bits é utilizada atualmente?",
+        "Por que a arquitetura de 64 bits é importante?"
+      ],
+      "responses": [
+        "A arquitetura de 64 bits permite o processamento de uma quantidade maior de dados em cada ciclo de clock, o que resulta em melhor desempenho e capacidade de processamento. Ela também permite endereçar mais memória, o que é fundamental para lidar com aplicativos e sistemas operacionais que exigem grandes quantidades de RAM. Além disso, a arquitetura de 64 bits é necessária para executar certos tipos de software, como aplicativos de edição de vídeo e jogos mais avançados."
       ]
     }
   ]

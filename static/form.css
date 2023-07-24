@@ -1,10 +1,20 @@
 body {
     background-color: #68912e;
-    display: flex;
-    justify-content: space-evenly;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; /* Adiciona espaçamento à direita dos botões */
+}
+
 button {
-    margin-left: 1%;
+    width: 110px;
     margin-bottom: 1em;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -14,15 +24,30 @@ button {
     border-radius: 7px;
     color: white;
 }
+
 form {
     background-color: #fff;
     border: solid #e3e3e3;
     border-radius: 6px;
     width: 80%;
 }
+
 header {padding: 4px 10px;}
+
 input {
     width: 97%;
     margin-bottom: 1em;
     margin-left: 1%;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os elementos à esquerda */
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os elementos à esquerda */
 }

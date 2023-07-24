@@ -12,23 +12,15 @@
         <div class="chatbox__support">
             <div class="chatbox__header">
                 <div class="chatbox__image--header">
-                    <img src="../static/image/icon.png" alt="image"  width="30" height="30">
+                    <img src="../static/image/icon.png" alt="image" width="30" height="30">
                 </div>
                 <div class="chatbox__content--header" style="flex: 70%;">
                     <h4 class="chatbox__heading--header">Chat </h4>
                     <p class="chatbox__description--header">Olá. O que gostaria de aprender?</p>
                 </div>
                 <div style="flex: 0%; width: 100%; height: 100%;">
-                    <a href="{{ url_for('form') }}" style="width: 100%; height: 100%;">
-                        <button style="
-                            border: none;
-                            color: white;
-                            border-radius: 10px;
-                            cursor: pointer;
-                            background: #ffffff10;
-                            width: 100%;
-                            height: 100%;
-                        ">Form</button>
+                    <a href="{{ url_for('form') }}" class="form-link">
+                        <button class="form-button">Form</button>
                     </a>
                 </div>
             </div>
@@ -52,18 +44,15 @@
     <!-- Exibir a matrícula -->
     <p>Matrícula: {{ registration }}</p>
 
-    <!-- Adicionar um ícone ao lado esquerdo do nome do usuário -->
-    <img src="profile-icon.png" alt="Ícone de perfil">
-
     <!-- Adicionar um botão de sair -->
-    <form action="/sair" method="post">
-        <input type="submit" value="Sair">
+    <form action="/sair" method="post" class="logout-form">
+        <input type="submit" value="Sair" class="logout-button">
     </form>
 </div>
-    <script>
+<script>
         $SCRIPT_ROOT = {{ request.script_root|tojson }};
-    </script>
-    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
 
 </body>
 </html>

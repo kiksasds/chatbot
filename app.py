@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import random
 import json
-from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration
-from chat import get_response
+from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration, exibir_perguntas_nao_respondidas
+from chat import get_response, reload_model
+import os
 
 app = Flask(__name__)
 app.secret_key = 'ChaveSecreta'
@@ -93,10 +94,21 @@ def form():
 def predict():
     global tag
     text = request.get_json().get("message")
-    response, predicted_tag = get_response(text)
-    tag = predicted_tag
-    message = {"answer": response}
-    return jsonify(message)
+    username = session.get('username')
+    registration = session.get('registration')
+
+    response_and_tag = get_response(text, username, registration)
+
+    if response_and_tag is not None:
+        response, predicted_tag = response_and_tag
+        tag = predicted_tag
+        message = {"answer": response}
+        return jsonify(message)
+    else:
+        # Lógica para tratar o caso em que get_response() retorna None
+        # Por exemplo, você pode retornar uma resposta padrão ou uma mensagem de erro.
+        message = {"answer": "Desculpe, ocorreu um erro ao processar a pergunta."}
+        return jsonify(message)
 
 
 @app.post("/fallback")
@@ -121,6 +133,41 @@ def sair():
 
     # Redirecionar para a página de login
     return redirect(url_for('login'))
+
+@app.route('/check_tutor')
+def check_tutor():
+    if 'username' in session:
+        username = session['username']
+        e_tutor = is_tutor(username)
+        return jsonify({'is_tutor': e_tutor})
+    else:
+        return jsonify({'is_tutor': False})
+
+
+@app.route('/unanswered_questions')
+def unanswered_questions():
+    perguntas = exibir_perguntas_nao_respondidas()
+
+    # Converter as perguntas em um objeto JSON
+    result = []
+    for pergunta in perguntas:
+        result.append({
+            "id": pergunta[0],
+            "question": pergunta[1],
+            "username": pergunta[2],
+            "registration": pergunta[3]
+        })
+
+    return jsonify(result)
+
+@app.route('/train', methods=['POST'])
+def treino():
+    # Executar o script de treinamento do chatbot
+    os.system("python train.py")
+    # Recarregar o modelo do chatbot
+    reload_model()
+
+    return "", 204
 
 if __name__ == "__main__":
     app.run(debug=True)

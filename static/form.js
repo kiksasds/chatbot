@@ -41,7 +41,7 @@ f.appendChild(hq);
 f.appendChild(dq);
 iqs = [];
 bq = cb();
-bq.innerText = "Nova Questão";
+bq.innerText = "Nova Pergunta";
 dq.appendChild(bq);
 bq.onclick = () =>{ai(dq, iqs, bq);}
 
@@ -51,7 +51,7 @@ f.appendChild(ha);
 f.appendChild(da);
 ias = [];
 ba = cb();
-ba.innerText = "Nova Respota";
+ba.innerText = "Nova Resposta";
 da.appendChild(ba);
 ba.onclick = () =>{ai(da, ias, ba);}
 

@@ -135,6 +135,13 @@ class Chatbox {
     }
 }
 
+fetch('/check_tutor')
+    .then(response => response.json())
+    .then(data => {
+        if (data.is_tutor) {
+            document.querySelector('.form-link').style.display = 'block';
+        }
+    });
 
 const chatbox = new Chatbox();
 chatbox.display();

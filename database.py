@@ -81,3 +81,33 @@ def get_registration(username):
     cursor.execute("SELECT registration FROM users WHERE username=?", (username,))
     registration = cursor.fetchone()[0]
     return registration
+
+# Criação da tabela de perguntas não respondidas
+cursor.execute('''CREATE TABLE IF NOT EXISTS unanswered_questions
+                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  question TEXT NOT NULL,
+                  username TEXT NOT NULL,
+                  registration TEXT NOT NULL)''')
+conn.commit()
+
+def save_unanswered_question(question, username, registration):
+    cursor.execute("INSERT INTO unanswered_questions (question, username, registration) VALUES (?, ?, ?)",
+                   (question, username, registration))
+    conn.commit()
+    print("Pergunta não respondida salva com sucesso.")
+
+def exibir_perguntas_nao_respondidas():
+    # Conexão com o banco de dados
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Executa a consulta SQL para recuperar as perguntas não respondidas
+    cursor.execute("SELECT * FROM unanswered_questions")
+    perguntas = cursor.fetchall()
+
+    # Fecha a conexão com o banco de dados
+    conn.close()
+
+    return perguntas
+
+
