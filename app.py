@@ -86,6 +86,14 @@ def form():
             f.write(json.dumps(novo, indent=2, ensure_ascii=False))
             f.truncate()
         return text
+    if request.method == 'GET' and request.args.get('tag'):
+        tag = request.args.get('tag')
+        with open('intents.json', 'r+', encoding='utf-8') as f:
+            jsonArr = json.load(f)
+            intents = jsonArr['intents']
+            for intent in intents:
+                if intent['tag'] == tag:
+                    return intent
 
     return render_template('form.html')
 

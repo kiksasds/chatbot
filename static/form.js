@@ -6,9 +6,10 @@ function ci(){
 }
 
 //cria e seta botao
-function cb(){
+function cb(t){
 	b = document.createElement("button");
 	b.type = "button";
+	b.innerText = t;
 	return b;
 }
 
@@ -30,18 +31,40 @@ function ai(d, is, b){
 f = document.getElementsByTagName("form")[0];
 
 //campos input para recuperar valores
-it = ci();
 ht = ch("Tag:");
+it = ci();
+bt = cb("Pesquisar");
 f.appendChild(ht);
 f.appendChild(it);
+f.appendChild(bt);
+bt.onclick = () =>{
+    fetch('http://127.0.0.1:5000/form?tag='+it.value, {
+		method: 'GET',
+		mode: 'cors'
+	})
+	.then(r => r.json())
+	.then(r => {
+	    it.value = r['tag'];
+	    for (i in r['patterns']){
+	        ai(dq, iqs, bq);
+	        iqs[iqs.length-1].value = r['patterns'][i];
+	    }
+	    for (i in r['responses']){
+	        ai(da, ias, ba);
+	        ias[ias.length-1].value = r['responses'][i];
+	    }
+	})
+	.catch((error) => {
+		console.error('Error:', error);
+	});
+}
 
 dq = document.createElement("div");
 hq = ch("Perguntas:");
 f.appendChild(hq);
 f.appendChild(dq);
 iqs = [];
-bq = cb();
-bq.innerText = "Nova Pergunta";
+bq = cb("Nova Pergunta");
 dq.appendChild(bq);
 bq.onclick = () =>{ai(dq, iqs, bq);}
 
@@ -50,13 +73,11 @@ ha = ch("Respostas:");
 f.appendChild(ha);
 f.appendChild(da);
 ias = [];
-ba = cb();
-ba.innerText = "Nova Resposta";
+ba = cb("Nova Resposta");
 da.appendChild(ba);
 ba.onclick = () =>{ai(da, ias, ba);}
 
-bs = cb();
-bs.innerText = "Enviar";
+bs = cb("Enviar");
 f.appendChild(bs);
 bs.onclick = () => {
 	d = new Object();
