@@ -42,31 +42,40 @@ def get_response(msg, username, registration):
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
 
-    if prob.item() > 0.99:
+    if prob.item() > 0.75:
         for intent in intents['intents']:
             if tag == intent["tag"]:
                 response = random.choice(intent['responses'])
-                print("get_response - response (prob > 0.99):", response)
+                print("prob1", prob.item())
+                print("tag", tag)
                 return response, tag
     else:
-        print("get_response - question saved1:", msg)
+        print("prob2", prob.item())
         similarities = []
         for intent in intents['intents']:
+            # Imprimir o padrão original
+            print(f"Original pattern: {intent['patterns'][0]}")
             intent_words = [stem(word) for word in tokenize(intent['patterns'][0])]
+            # Imprimir o padrão após o pré-processamento de texto
+            print(f"Preprocessed pattern: {intent_words}")
             intent_vector = bag_of_words(intent_words, all_words)
+            # Imprimir a representação vetorial do padrão
+            print(f"Pattern vector: {intent_vector}")
             similarity = cosine_similarity(X, intent_vector.reshape(1, -1))
             similarities.append(similarity)
+            # Imprimir o valor de similaridade
+            print(f"Similarity: {similarity}")
         max_similarity_idx = np.argmax(similarities)
         max_similarity = similarities[max_similarity_idx]
 
-        if max_similarity > 0.5:
+        if max_similarity > 0.4 and prob.item() > 0.5:
+            print("similarity", max_similarity)
             tag = intents['intents'][max_similarity_idx]["tag"]
             return f"Desculpe, não tenho certeza sobre isso. Você está se referindo a '{tag}'?", tag
         else:
-            print("get_response - question saved:", msg)
+            print("prob3", prob.item())
             save_unanswered_question(msg, username, registration)
             exibir_perguntas_nao_respondidas()
-            print("get_response - question saved2:", msg)
             return f"Enviamos a pergunta ao tutor e logo mais ele responderá", tag
 
 

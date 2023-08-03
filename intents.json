@@ -10,7 +10,7 @@
       ],
       "responses": [
         "A arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo.",
-        "Arquitetura de Computador” refere-se aos atributos que são vistos pelo programador. Por exemplo, conjunto de instruções, número de bits de representação dos dados, endereçamento de memória e mecanismos de entrada e saída, são exemplos de atributos de arquitetura de computadores"
+        "Arquitetura de Computador refere-se aos atributos que são vistos pelo programador. Por exemplo, conjunto de instruções, número de bits de representação dos dados, endereçamento de memória e mecanismos de entrada e saída, são exemplos de atributos de arquitetura de computadores"
       ]
     },
     {
@@ -26,7 +26,16 @@
     {
       "tag": "Quais são os componentes de um computador",
       "patterns": [
-        "Quais são os componentes da organização de um computador?"
+        "Quais são os componentes da organização de um computador?",
+        "Quais são os principais elementos que compõem um computador?",
+        "Explique os componentes essenciais em um sistema de computador.",
+        "Quais são os elementos básicos de um PC?",
+        "Descreva os principais componentes que formam um computador pessoal.",
+        "Quais são as partes fundamentais que constituem um sistema de computação?",
+        "O que compõe a estrutura básica de um computador?",
+        "Quais são os elementos que fazem parte da organização interna de um computador?",
+        "Descreva a arquitetura básica de um computador e seus componentes.",
+        "Quais são as peças essenciais de um computador e como elas funcionam em conjunto?"
       ],
       "responses": [
         "Os componentes da organização de um computador incluem a unidade central de processamento (CPU), a memória, os dispositivos de entrada/saída (E/S), o barramento do sistema e o controlador de interrupções."
@@ -36,7 +45,17 @@
       "tag": "o que é Processador",
       "patterns": [
         "O que é um processador?",
-        "Defina processador"
+        "Defina processador",
+        "O que é a CPU de um computador?",
+        "Explique o conceito de processador em computação.",
+        "O que significa a sigla CPU?",
+        "Defina a função de um processador em um computador.",
+        "O que é o cérebro do computador?",
+        "Explique o papel do processador no funcionamento de um computador.",
+        "O que é um chip de processamento?",
+        "Qual é a importância do processador em um sistema computacional?",
+        "Descreva o papel do processador no processamento de dados em um computador.",
+        "O que é a unidade central de processamento (CPU)?"
       ],
       "responses": [
         "Um processador, também conhecido como unidade central de processamento (CPU), é o componente principal de um computador responsável por executar instruções e realizar operações lógicas e aritméticas em dados.",
@@ -90,7 +109,17 @@
       "tag": "Por que o Processador é importante",
       "patterns": [
         "Por que o processador é um componente importante?",
-        "Qual é a importância do processador em um computador?"
+        "Qual é a importância do processador em um computador?",
+        "Qual a relevância do processador para o funcionamento do computador?",
+        "Por que o processador é considerado o coração do computador?",
+        "Quais são os principais papéis desempenhados pelo processador em um sistema computacional?",
+        "Explique por que o processador é um dos componentes mais vitais de um computador.",
+        "Como o processador contribui para o desempenho geral do computador?",
+        "Quais são as funções fundamentais do processador em relação aos demais componentes do computador?",
+        "Por que o processador é um dos elementos-chave na determinação da velocidade e eficiência de um PC?",
+        "Descreva a importância do processador na execução das tarefas de um computador.",
+        "Quais são os benefícios de ter um processador poderoso em um sistema computacional?",
+        "O que faz do processador um componente crucial para a capacidade de processamento de um computador?"
       ],
       "responses": [
         "O processador é o cérebro do computador, responsável por realizar todas as operações de processamento de dados. Ele executa as instruções dos programas, manipula os dados e coordena o funcionamento de todos os outros componentes do sistema. A qualidade e o desempenho do processador têm um impacto significativo no desempenho geral do computador."
@@ -112,10 +141,32 @@
       "patterns": [
         "Qual é a importância da arquitetura de 64 bits?",
         "Por que a arquitetura de 64 bits é utilizada atualmente?",
-        "Por que a arquitetura de 64 bits é importante?"
+        "Por que a arquitetura de 64 bits é importante?",
+        "Qual é a vantagem da arquitetura de 64 bits?",
+        "Quais são os benefícios da arquitetura de 64 bits?",
+        "O que torna a arquitetura de 64 bits relevante?",
+        "Quais são as razões para usar a arquitetura de 64 bits?",
+        "Como a arquitetura de 64 bits melhora o desempenho?",
+        "Quais são as diferenças entre a arquitetura de 32 bits e 64 bits?",
+        "Por que a maioria dos sistemas modernos utiliza a arquitetura de 64 bits?",
+        "Como a arquitetura de 64 bits permite o acesso a mais memória?",
+        "Quais são os impactos da arquitetura de 64 bits em aplicativos e jogos?",
+        "Por que a transição para a arquitetura de 64 bits é importante para o desenvolvimento de software?"
       ],
       "responses": [
         "A arquitetura de 64 bits permite o processamento de uma quantidade maior de dados em cada ciclo de clock, o que resulta em melhor desempenho e capacidade de processamento. Ela também permite endereçar mais memória, o que é fundamental para lidar com aplicativos e sistemas operacionais que exigem grandes quantidades de RAM. Além disso, a arquitetura de 64 bits é necessária para executar certos tipos de software, como aplicativos de edição de vídeo e jogos mais avançados."
+      ]
+    },
+    {
+      "tag": "outros",
+      "patterns": [
+        "Qual é a capital do Brasil?",
+        "Quem descobriu o Brasil?",
+        "Quando foi a independência do Brasil?",
+        "Aliens existem?"
+      ],
+      "responses": [
+        "Desculpe, não tenho informações sobre esse assunto."
       ]
     }
   ]
