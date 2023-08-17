@@ -1,6 +1,29 @@
 {
   "intents": [
     {
+      "tag": "o que é Arquitetura de Computadores",
+      "patterns": [
+        "O que é arquitetura de computadores?",
+        "Defina arquitetura de  computadores",
+        "Me explique a arquitetura de computadores",
+        "Me fale sobre a arquitetura de computadores"
+      ],
+      "responses": [
+        "A arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo.",
+        "Arquitetura de Computador refere-se aos atributos que são vistos pelo programador. Por exemplo, conjunto de instruções, número de bits de representação dos dados, endereçamento de memória e mecanismos de entrada e saída, são exemplos de atributos de arquitetura de computadores"
+      ]
+    },
+    {
+      "tag": "Cumprimento",
+      "patterns": [
+        "Olá",
+        "Oi"
+      ],
+      "responses": [
+        "Olá, como está? Sou um chatbot responsável por retirar suas dúvidas"
+      ]
+    },
+    {
       "tag": "Quais são os componentes de um computador",
       "patterns": [
         "Quais são os componentes da organização de um computador?",
