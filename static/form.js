@@ -24,11 +24,39 @@ function ch(t) {
 function ai(d, is, b){
 	is.push(ci());
 	d.insertBefore(is[is.length - 1], b);
-	d.insertBefore(document.createElement("br"), b);
+}
+
+//Set ixs com array
+function setIxs(ixs, arr, dx, bx){
+    ixs.forEach((e) => {e.remove()});
+    ixs.length = 0;
+    arr.forEach((e) => {
+        ai(dx, ixs, bx);
+        ixs[ixs.length-1].value = e;
+    })
 }
 
 //cria e seta formulario
 f = document.getElementsByTagName("form")[0];
+
+//Botao Excluir
+be = cb('Excluir');
+be.onclick = () => {
+    fetch('http://127.0.0.1:5000/form?tag='+it.value, {
+		method: 'DELETE',
+		mode: 'cors'
+	})
+	.then(r => r.json())
+	.then(r => {
+	    it.value = r['tag'];
+	    setIxs(iqs, r['patterns'], dq, bq);
+	    setIxs(ias, r['responses'], da, ba);
+	})
+	.catch((error) => {
+		console.error('Error:', error);
+	});
+	be.remove();
+}
 
 //campos input para recuperar valores
 ht = ch("Tag:");
@@ -45,14 +73,9 @@ bt.onclick = () =>{
 	.then(r => r.json())
 	.then(r => {
 	    it.value = r['tag'];
-	    for (i in r['patterns']){
-	        ai(dq, iqs, bq);
-	        iqs[iqs.length-1].value = r['patterns'][i];
-	    }
-	    for (i in r['responses']){
-	        ai(da, ias, ba);
-	        ias[ias.length-1].value = r['responses'][i];
-	    }
+	    setIxs(iqs, r['patterns'], dq, bq);
+	    setIxs(ias, r['responses'], da, ba);
+	    f.appendChild(be);
 	})
 	.catch((error) => {
 		console.error('Error:', error);

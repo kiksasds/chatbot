@@ -1,3 +1,5 @@
+from builtins import enumerate
+
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import random
 import json
@@ -73,7 +75,7 @@ def base():
     return render_template('base.html', username=username, registration=registration)
 
 
-@app.route('/form', methods=['POST', 'GET'])
+@app.route('/form', methods=['POST', 'GET', 'DELETE'])
 def form():
     if not is_tutor(session['username']):
         return 'you :'+session['username']+' does not have permission '+"<a href='/'>Home</a>"
@@ -94,6 +96,20 @@ def form():
             for intent in intents:
                 if intent['tag'] == tag:
                     return intent
+            return json.loads('{"tag":"","patterns":[],"responses":[]}')
+    if request.method == 'DELETE' and request.args.get('tag'):
+        tag = request.args.get('tag')
+        with open('intents.json', 'r+', encoding='utf-8') as f:
+            jsonArr = json.load(f)
+            intents = jsonArr['intents']
+            for i, intent in enumerate(intents):
+                if intent['tag'] == tag:
+                    intents.pop(i)
+            f.seek(0)
+            f.write(json.dumps(jsonArr, indent=2, ensure_ascii=False))
+            f.truncate()
+
+        return json.loads('{"tag":"","patterns":[],"responses":[]}')
 
     return render_template('form.html')
 
