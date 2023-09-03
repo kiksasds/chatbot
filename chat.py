@@ -1,101 +1,134 @@
+import gc
+import os
 import random
 import json
 import torch
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
+import pandas as pd
 from database import save_unanswered_question, exibir_perguntas_nao_respondidas
-from sklearn.metrics.pairwise import cosine_similarity
-from model import NeuralNet
-from nltk_utils import bag_of_words, tokenize, stem
-import gc
+from transformers import AutoModel, AutoTokenizer
+from model import BERT_Arch
+import re
+import pickle
 
-global model, tags, all_words
+with open('intents.json', 'r', encoding='utf-8') as f:
+    intents = json.load(f)
+
+if os.path.exists('intents.xlsx'):
+    df = pd.read_excel('intents.xlsx')
+else:
+    data = []
+    for intent in intents['intents']:
+        tag = intent['tag']
+        for pattern in intent['patterns']:
+            data.append({'text': pattern, 'label': tag})
+
+    df = pd.DataFrame(data)
+    df.to_excel('intents.xlsx', index=False)
+
+if os.path.exists('label_encoder.pkl'):
+    with open('label_encoder.pkl', 'rb') as f:
+        le = pickle.load(f)
+else:
+    print('não tem?')
+    le = LabelEncoder()
+    df['label'] = le.fit_transform(df['label'])
+    with open('label_encoder.pkl', 'wb') as f:
+        pickle.dump(le, f)
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
+tokenizer = AutoTokenizer.from_pretrained('neuralmind/bert-base-portuguese-cased')
+bert = AutoModel.from_pretrained('neuralmind/bert-base-portuguese-cased')
 
-FILE = "data.pth"
-data = torch.load(FILE)
+FILE = "bert_model.pth"
+checkpoint = torch.load(FILE)
 
-input_size = data["input_size"]
-hidden_size = data["hidden_size"]
-output_size = data["output_size"]
-all_words = data['all_words']
-tags = data['tags']
-model_state = data["model_state"]
+label_counts = checkpoint['label_counts']
 
-model = NeuralNet(input_size, hidden_size, output_size).to(device)
-model.load_state_dict(model_state)
+model = BERT_Arch(bert, label_counts)
+model.load_state_dict(checkpoint['model_state_dict'])
+model = model.to(device)
 model.eval()
 
 bot_name = "Carol"
 
+def get_prediction(str):
+    str = re.sub(r'[^a-zA-Z\s]', '', str)
+    test_text = [str]
+    model.eval()
+
+    tokens_test_data = tokenizer(
+        test_text,
+        max_length=64,
+        padding='max_length',
+        truncation=True,
+        return_token_type_ids=False
+    )
+    test_seq = torch.tensor(tokens_test_data['input_ids'])
+    test_mask = torch.tensor(tokens_test_data['attention_mask'])
+
+    preds = None
+    with torch.no_grad():
+        preds = model(test_seq.to(device), test_mask.to(device))
+    preds = preds.detach().cpu().numpy()
+    preds = np.argmax(preds, axis=1)
+    print("Intent Identified: ", le.inverse_transform(preds)[0])
+    return le.inverse_transform(preds)[0]
+
 
 def get_response(msg, username, registration):
-    with open('intents.json', 'r', encoding='utf-8') as json_data:
-        intents = json.load(json_data)
-    sentence = tokenize(msg)
-    X = bag_of_words(sentence, all_words)
-    X = X.reshape(1, X.shape[0])
-    X = torch.from_numpy(X).to(device)
-    output = model(X)
-    _, predicted = torch.max(output, dim=1)
-    tag = tags[predicted.item()]
-    probs = torch.softmax(output, dim=1)
-    prob = probs[0][predicted.item()]
-
-    if prob.item() > 0.75:
-        for intent in intents['intents']:
-            if tag == intent["tag"]:
-                response = random.choice(intent['responses'])
-                print("prob1", prob.item())
-                print("tag", tag)
-                return response, tag
+    pred = get_prediction(msg)
+    tokens = tokenizer.encode_plus(msg, max_length=64, padding='max_length', truncation=True, return_tensors='pt')
+    input_ids = tokens['input_ids'].to(device)
+    attention_mask = tokens['attention_mask'].to(device)
+    output = model(input_ids, attention_mask)
+    predicted = torch.argmax(output, dim=1)
+    prob = torch.softmax(output, dim=1)[0][predicted].item()
+    print('probabilidade', prob)
+    result = "Desculpe, não consegui encontrar uma resposta adequada."
+    if prob > 0.8:
+        for i in intents['intents']:
+            if i["tag"] == pred:
+                print("tag", pred)
+                result = random.choice(i['responses'])
+                break
+        return result, pred
     else:
-        print("prob2", prob.item())
-        similarities = []
-        for intent in intents['intents']:
-            # Imprimir o padrão original
-            print(f"Original pattern: {intent['patterns'][0]}")
-            intent_words = [stem(word) for word in tokenize(intent['patterns'][0])]
-            # Imprimir o padrão após o pré-processamento de texto
-            print(f"Preprocessed pattern: {intent_words}")
-            intent_vector = bag_of_words(intent_words, all_words)
-            # Imprimir a representação vetorial do padrão
-            print(f"Pattern vector: {intent_vector}")
-            similarity = cosine_similarity(X, intent_vector.reshape(1, -1))
-            similarities.append(similarity)
-            # Imprimir o valor de similaridade
-            print(f"Similarity: {similarity}")
-        max_similarity_idx = np.argmax(similarities)
-        max_similarity = similarities[max_similarity_idx]
-
-        if max_similarity > 0.4 and prob.item() > 0.5:
-            print("similarity", max_similarity)
-            tag = intents['intents'][max_similarity_idx]["tag"]
-            return f"Desculpe, não tenho certeza sobre isso. Você está se referindo a '{tag}'?", tag
-        else:
-            print("prob3", prob.item())
-            save_unanswered_question(msg, username, registration)
-            exibir_perguntas_nao_respondidas()
-            return f"Enviamos a pergunta ao tutor e logo mais ele responderá", tag
+        print("prob3", prob)
+        save_unanswered_question(msg, username, registration)
+        exibir_perguntas_nao_respondidas()
+        return f"Enviamos a pergunta ao tutor e logo mais ele responderá", pred
 
 
 def reload_model():
-    global model, all_words, tags
+    global model
 
     # Limpar a memória do modelo antes de recarregar
     del model
     gc.collect()
 
-    FILE = "data.pth"
-    data = torch.load(FILE)
+    checkpoint = torch.load(FILE)
+    label_counts = checkpoint['label_counts']
 
-    input_size = data["input_size"]
-    hidden_size = data["hidden_size"]
-    output_size = data["output_size"]
-    all_words = data['all_words']
-    tags = data['tags']
-    model_state = data["model_state"]
-
-    model = NeuralNet(input_size, hidden_size, output_size).to(device)
-    model.load_state_dict(model_state)
+    model = BERT_Arch(checkpoint['bert'], label_counts)
+    model.load_state_dict(checkpoint['model_state_dict'])
+    model = model.to(device)
     model.eval()
+
+    print("Model reloaded.")
+
+if __name__ == "__main__":
+    print("Let's chat! (type 'quit' to exit)")
+    username = 'dsadas'
+    registration = 2323
+    while True:
+        # sentence = "do you use credit cards?"
+        sentence = input("You: ")
+        if sentence == "quit":
+            break
+
+        resp = get_response(sentence,username,registration)
+
+

@@ -3,7 +3,8 @@ from builtins import enumerate
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
 import random
 import json
-from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration, exibir_perguntas_nao_respondidas
+from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration, \
+    exibir_perguntas_nao_respondidas
 from chat import get_response, reload_model
 import os
 
@@ -42,12 +43,12 @@ def login():
 
     return render_template('login.html', sucesso=sucesso)
 
+
 @app.route("/logout")
 def logout():
     # remove the username from the session if it is there
     session.pop('username', None)
     return redirect('/')
-
 
 
 @app.route('/cadastro', methods=['POST'])
@@ -65,6 +66,7 @@ def cadastro():
     # Redirecionar para a página de login com uma mensagem de sucesso
     return redirect(url_for('login', sucesso=True))
 
+
 @app.route('/base')
 def base():
     # Obter o nome de usuário e a matrícula da sessão
@@ -78,7 +80,7 @@ def base():
 @app.route('/form', methods=['POST', 'GET', 'DELETE'])
 def form():
     if not is_tutor(session['username']):
-        return 'you :'+session['username']+' does not have permission '+"<a href='/'>Home</a>"
+        return 'you :' + session['username'] + ' does not have permission ' + "<a href='/'>Home</a>"
     if request.method == 'POST':
         text = request.get_json().get("message")
         with open('intents.json', 'r+', encoding='utf-8') as f:
@@ -122,7 +124,6 @@ def predict():
     registration = session.get('registration')
 
     response_and_tag = get_response(text, username, registration)
-
     if response_and_tag is not None:
         response, predicted_tag = response_and_tag
         tag = predicted_tag
@@ -150,6 +151,7 @@ def fallback():
         message = {"answer": response}
         return jsonify(message)
 
+
 @app.route('/sair', methods=['POST'])
 def sair():
     # Limpar a sessão
@@ -157,6 +159,7 @@ def sair():
 
     # Redirecionar para a página de login
     return redirect(url_for('login'))
+
 
 @app.route('/check_tutor')
 def check_tutor():
@@ -184,6 +187,7 @@ def unanswered_questions():
 
     return jsonify(result)
 
+
 @app.route('/train', methods=['POST'])
 def treino():
     # Executar o script de treinamento do chatbot
@@ -192,6 +196,7 @@ def treino():
     reload_model()
 
     return "", 204
+
 
 if __name__ == "__main__":
     app.run(debug=True)

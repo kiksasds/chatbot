@@ -1,20 +1,40 @@
 import torch
 import torch.nn as nn
+from transformers import AutoModel
 
 
-class NeuralNet(nn.Module):
-    def __init__(self, input_size, hidden_size, num_classes):
-        super(NeuralNet, self).__init__()
-        self.l1 = nn.Linear(input_size, hidden_size)
-        self.l2 = nn.Linear(hidden_size, hidden_size)
-        self.l3 = nn.Linear(hidden_size, num_classes)
+class BERT_Arch(nn.Module):
+    def __init__(self, bert, label_counts):
+        super(BERT_Arch, self).__init__()
+        self.bert = bert
+        self.label_counts = len(label_counts)  # Obtém o número de classes únicas
+
+        # Camada de dropout
+        self.dropout = nn.Dropout(0.2)
+
+        # Função de ativação ReLU
         self.relu = nn.ReLU()
+        # Camada densa
+        self.fc1 = nn.Linear(768, 512)
+        self.fc2 = nn.Linear(512, 256)
+        self.fc3 = nn.Linear(256, self.label_counts)  # Use self.label_counts aqui
+        # Função de ativação softmax
+        self.softmax = nn.LogSoftmax(dim=1)
 
-    def forward(self, x):
-        out = self.l1(x)
-        out = self.relu(out)
-        out = self.l2(out)
-        out = self.relu(out)
-        out = self.l3(out)
+    def forward(self, sent_id, mask):
+        # Passa as entradas para o modelo
+        cls_hs = self.bert(sent_id, attention_mask=mask)[0][:, 0]
+        x = self.fc1(cls_hs)
+        x = self.relu(x)
+        x = self.dropout(x)
 
-        return out
+        x = self.fc2(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+
+        # Camada de saída
+        x = self.fc3(x)
+
+        # Aplica a ativação softmax
+        x = self.softmax(x)
+        return x

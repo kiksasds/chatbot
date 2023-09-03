@@ -6,7 +6,23 @@
         "O que é arquitetura de computadores?",
         "Defina arquitetura de  computadores",
         "Me explique a arquitetura de computadores",
-        "Me fale sobre a arquitetura de computadores"
+        "Me fale sobre a arquitetura de computadores",
+        "Poderia me explicar o que é arquitetura de computadores?",
+        "O que significa arquitetura de computadores?",
+        "Qual é a definição de arquitetura de computadores?",
+        "Você poderia me dizer o que é arquitetura de computadores?",
+        "O que envolve a arquitetura de computadores?",
+        "Poderia me dar uma explicação sobre arquitetura de computadores?",
+        "O que compreende a arquitetura de computadores?",
+        "Qual é o conceito de arquitetura de computadores?",
+        "Você poderia me fornecer informações sobre arquitetura de computadores?",
+        "O que é estudado na arquitetura de computadores?",
+        "Poderia me esclarecer sobre o que é arquitetura de computadores?",
+        "O que abrange a área de arquitetura de computadores?",
+        "Qual é o significado de arquitetura de computadores na informática?",
+        "Você poderia me dar uma definição sobre arquitetura de computadores?",
+        "O que é tratado na arquitetura de computadores?",
+        "Poderia me dizer mais sobre o campo da arquitetura de computadores?"
       ],
       "responses": [
         "A arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo.",
@@ -17,7 +33,22 @@
       "tag": "Cumprimento",
       "patterns": [
         "Olá",
-        "Oi"
+        "Oi",
+        "Olá!",
+        "Oi, tudo bem?",
+        "E aí?",
+        "Como vai?",
+        "Bom dia!",
+        "Boa tarde!",
+        "Boa noite!",
+        "Olá, como posso usar isso?",
+        "Saudações!",
+        "Hey!",
+        "Opa!",
+        "Hi!",
+        "Olá, estou aqui para aprender.",
+        "Saudações calorosas!"
+
       ],
       "responses": [
         "Olá, como está? Sou um chatbot responsável por retirar suas dúvidas"
@@ -35,7 +66,19 @@
         "O que compõe a estrutura básica de um computador?",
         "Quais são os elementos que fazem parte da organização interna de um computador?",
         "Descreva a arquitetura básica de um computador e seus componentes.",
-        "Quais são as peças essenciais de um computador e como elas funcionam em conjunto?"
+        "Quais são as peças essenciais de um computador e como elas funcionam em conjunto?",
+        "Quais são os principais componentes de um computador?",
+        "Poderia me dizer quais são os componentes de um computador?",
+        "Quais são as partes que compõem um computador?",
+        "O que é necessário para montar um computador?",
+        "Quais são os elementos fundamentais de um computador?",
+        "Poderia me listar os componentes de um computador?",
+        "Quais são as peças que formam um computador?",
+        "O que é preciso para construir um computador?",
+        "Quais são os componentes básicos de um computador?",
+        "Poderia me explicar quais são as partes de um computador?",
+        "O que compõe o hardware de um computador?",
+        "Poderia me listar as partes fundamentais de um computador?"
       ],
       "responses": [
         "Os componentes da organização de um computador incluem a unidade central de processamento (CPU), a memória, os dispositivos de entrada/saída (E/S), o barramento do sistema e o controlador de interrupções."
@@ -55,7 +98,17 @@
         "O que é um chip de processamento?",
         "Qual é a importância do processador em um sistema computacional?",
         "Descreva o papel do processador no processamento de dados em um computador.",
-        "O que é a unidade central de processamento (CPU)?"
+        "O que é a unidade central de processamento (CPU)?",
+        "Poderia me explicar o que é um processador?",
+        "Qual é a função de um processador em um computador?",
+        "O que é a unidade de processamento central de um computador?",
+        "Poderia me dizer o que é um processador?",
+        "Qual é o papel do processador em um sistema de computação?",
+        "O que é a CPU em um computador?",
+        "Poderia me explicar o que é a unidade central de processamento?",
+        "O que faz o processador em um computador?",
+        "Qual é a importância do processador em um computador?",
+        "Poderia me dizer qual é a função da CPU em um computador?"
       ],
       "responses": [
         "Um processador, também conhecido como unidade central de processamento (CPU), é o componente principal de um computador responsável por executar instruções e realizar operações lógicas e aritméticas em dados.",
@@ -66,7 +119,25 @@
       "tag": "o que é Memória RAM",
       "patterns": [
         "O que é Memória RAM?",
-        "Defina Memória RAM"
+        "Defina Memória RAM",
+        "Poderia me explicar o que é Memória RAM?",
+        "Qual é a função da Memória RAM em um computador?",
+        "O que é a memória de acesso aleatório em um computador?",
+        "Poderia me dizer o que é Memória RAM?",
+        "Qual é o papel da Memória RAM em um sistema de computação?",
+        "O que é a memória volátil em um computador?",
+        "Poderia me explicar o que é a memória de acesso aleatório?",
+        "O que faz a Memória RAM em um computador?",
+        "Qual é a importância da Memória RAM em um computador?",
+        "Poderia me dizer qual é a função da memória de acesso aleatório em um computador?",
+        "O que significa RAM em informática?",
+        "Poderia me explicar como funciona a Memória RAM?",
+        "Qual é a diferença entre Memória RAM e armazenamento em disco?",
+        "Poderia me dizer por que a Memória RAM é importante para o desempenho do computador?",
+        "O que acontece quando a Memória RAM de um computador está cheia?",
+        "Poderia me explicar como a Memória RAM afeta a velocidade do computador?",
+        "Qual é a relação entre a quantidade de Memória RAM e o desempenho do computador?",
+        "Poderia me dizer como escolher a quantidade certa de Memória RAM para um computador?"
       ],
       "responses": [
         "A Memória RAM (Random Access Memory) é um tipo de memória volátil utilizada pelos computadores para armazenar dados e instruções temporariamente enquanto o sistema está em execução.",
@@ -77,7 +148,21 @@
       "tag": "o que é Barramento do Sistema",
       "patterns": [
         "O que é o Barramento do Sistema?",
-        "Defina Barramento do Sistema"
+        "Defina Barramento do Sistema",
+        "Pode me explicar o significado de Barramento do Sistema?",
+        "O que Barramento do Sistema representa?",
+        "Gostaria de saber a definição exata de Barramento do Sistema.",
+        "O termo Barramento do Sistema se refere a quê?",
+        "Como você definiria o conceito de Barramento do Sistema?",
+        "O que é exatamente entendido por Barramento do Sistema?",
+        "Você poderia elucidar o termo Barramento do Sistema?",
+        "Poderia esclarecer o sentido por trás de Barramento do Sistema?",
+        "Gostaria de obter uma explicação sobre Barramento do Sistema, você poderia fornecer?",
+        "Estou curioso para entender o que é Barramento do Sistema, você pode me ajudar?",
+        "Poderia detalhar o que significa Barramento do Sistema?",
+        "O termo técnico Barramento do Sistema se refere a quê?",
+        "O que se entende por Barramento do Sistema na área de computação?",
+        "Poderia simplificar o conceito de Barramento do Sistema para mim?"
       ],
       "responses": [
         "O Barramento do Sistema é um conjunto de linhas de comunicação que permite a transferência de dados entre os diferentes componentes de um computador, como o processador, a memória e os dispositivos de entrada/saída.",
@@ -89,7 +174,25 @@
       "patterns": [
         "Quando foi inventado o processador?",
         "Qual foi o ano de surgimento do processador?",
-        "Quando surgiu o Processador?"
+        "Quando surgiu o Processador?",
+        "Quando foi criado o primeiro processador?",
+        "Em que ano o processador foi inventado?",
+        "Quando foi desenvolvido o primeiro processador?",
+        "Poderia me dizer quando surgiu o processador?",
+        "Qual é a data de criação do processador?",
+        "Quando foi fabricado o primeiro processador?",
+        "Poderia me informar quando foi criado o processador?",
+        "Em que época surgiu o processador?",
+        "Quando foi lançado o primeiro processador?",
+        "Poderia me dizer em que ano foi inventado o processador?",
+        "Qual é a história do surgimento do processador?",
+        "Quando foi introduzido o primeiro processador no mercado?",
+        "Poderia me contar quando foi desenvolvido o processador?",
+        "Em que década surgiu o processador?",
+        "Quando começou a história do processador?",
+        "Poderia me dizer quando foi fabricado o primeiro processador?",
+        "Qual é a origem do processador?",
+        "Quando foi estabelecido o conceito de processador?"
       ],
       "responses": [
         "O primeiro processador comercialmente viável, o Intel 4004, foi lançado em 1971."
@@ -99,7 +202,25 @@
       "tag": "Como funciona um Processador",
       "patterns": [
         "Como um processador funciona?",
-        "Explique o funcionamento de um processador"
+        "Explique o funcionamento de um processador",
+        "Poderia me explicar como um processador funciona?",
+        "Qual é o processo de funcionamento de um processador?",
+        "Como um processador executa suas operações?",
+        "Poderia me dizer como um processador opera?",
+        "Qual é a lógica por trás do funcionamento de um processador?",
+        "Como um processador realiza cálculos?",
+        "Poderia me informar como um processador processa informações?",
+        "Qual é o mecanismo de funcionamento de um processador?",
+        "Como um processador gerencia suas tarefas?",
+        "Poderia me dizer como um processador lida com instruções?",
+        "Qual é a dinâmica de funcionamento de um processador?",
+        "Como um processador manipula dados?",
+        "Poderia me contar como um processador executa programas?",
+        "Qual é a estrutura de funcionamento de um processador?",
+        "Como um processador interage com outros componentes do computador?",
+        "Poderia me dizer como um processador gerencia a memória?",
+        "Qual é o fluxo de trabalho de um processador?",
+        "Como um processador coordena suas operações?"
       ],
       "responses": [
         "Um processador funciona executando instruções sequencialmente a partir da memória, decodificando-as e executando as operações correspondentes nos dados armazenados em seus registradores internos. Ele possui uma unidade de controle responsável por coordenar essas operações e controlar o fluxo de dados e instruções dentro do processador."
@@ -126,17 +247,6 @@
       ]
     },
     {
-      "tag": "Como funciona a memória cache?",
-      "patterns": [
-        "Explique o funcionamento da memória cache?",
-        "Como a memória cache otimiza o desempenho do computador?",
-        "Como funciona a memória cache?"
-      ],
-      "responses": [
-        "A memória cache é uma memória de alta velocidade que armazena cópias dos dados mais frequentemente acessados pela CPU. Ela funciona como um buffer entre a CPU e a memória principal, reduzindo o tempo de acesso aos dados. Quando a CPU precisa de um dado, ela primeiro verifica se ele está na memória cache. Se estiver, o acesso é rápido. Caso contrário, o dado é buscado na memória principal e, se necessário, é armazenado na cache para acesso futuro."
-      ]
-    },
-    {
       "tag": "Por que a arquitetura de 64 bits é importante",
       "patterns": [
         "Qual é a importância da arquitetura de 64 bits?",
@@ -158,15 +268,78 @@
       ]
     },
     {
-      "tag": "outros",
+      "tag": "Como funciona a Memória RAM",
       "patterns": [
-        "Qual é a capital do Brasil?",
-        "Quem descobriu o Brasil?",
-        "Quando foi a independência do Brasil?",
-        "Aliens existem?"
+        "Como a Memória RAM funciona?",
+        "Como a Memória RAM armazena informações?",
+        "Como a Memória RAM afeta o desempenho do computador?",
+        "Poderia me explicar como a Memória RAM funciona?",
+        "Qual é o processo de funcionamento da Memória RAM?",
+        "Como a Memória RAM armazena e recupera dados?",
+        "Poderia me dizer como a Memória RAM opera?",
+        "Qual é a lógica por trás do funcionamento da Memória RAM?",
+        "Como a Memória RAM gerencia o armazenamento temporário de informações?",
+        "Poderia me informar como a Memória RAM processa informações?",
+        "Qual é o mecanismo de funcionamento da Memória RAM?",
+        "Como a Memória RAM interage com outros componentes do computador?",
+        "Poderia me dizer como a Memória RAM afeta a velocidade do computador?",
+        "Qual é a dinâmica de funcionamento da Memória RAM?",
+        "Como a Memória RAM lida com múltiplas tarefas simultaneamente?",
+        "Poderia me contar como a Memória RAM gerencia o acesso aos dados?",
+        "Qual é a estrutura de funcionamento da Memória RAM?"
       ],
       "responses": [
-        "Desculpe, não tenho informações sobre esse assunto."
+        "A Memória RAM (Random Access Memory) é um tipo de memória volátil utilizada pelos computadores para armazenar dados e instruções temporariamente enquanto o sistema está em execução. Ela fornece acesso rápido aos dados necessários para o funcionamento do computador, o que pode afetar significativamente o desempenho geral do sistema."
+      ]
+    },
+    {
+      "tag": "Quando usar o Barramento do Sistema",
+      "patterns": [
+        "Quando o Barramento do Sistema é usado?",
+        "Quando o Barramento do Sistema é importante?",
+        "Quando eu preciso de um Barramento do Sistema mais rápido?",
+        "Em que situações o uso do Barramento do Sistema é mais crucial?",
+        "Quais são os cenários em que é especialmente importante ter um Barramento do Sistema eficiente?",
+        "Quando a velocidade do Barramento do Sistema se torna um fator determinante?",
+        "O Barramento do Sistema é sempre necessário, ou há momentos específicos em que ele se destaca?",
+        "Como a demanda por um processamento mais rápido influencia a escolha do Barramento do Sistema?"
+      ],
+      "responses": [
+        "O Barramento do Sistema é usado sempre que o computador está em execução. Ele é importante para fornecer uma via de comunicação para transmitir informações e controlar o fluxo de dados dentro do computador."
+      ]
+    },
+    {
+      "tag": "Por que usar o Barramento do Sistema",
+      "patterns": [
+        "Por que precisamos do Barramento do Sistema?",
+        "Por que o Barramento do Sistema é importante?",
+        "Quais são os motivos para a utilização do Barramento do Sistema?",
+        "Por que é recomendável empregar o Barramento do Sistema?",
+        "Quais as justificativas para adotar o Barramento do Sistema?",
+        "Quais as vantagens de implementar o Barramento do Sistema?",
+        "Qual a razão para escolher o Barramento do Sistema em um sistema computacional?",
+        "Quais os argumentos a favor do uso do Barramento do Sistema?",
+        "Por que é relevante considerar o Barramento do Sistema na arquitetura de um computador?",
+        "Quais os pontos positivos de incorporar o Barramento do Sistema no design de um sistema?",
+        "Quais os fatores que tornam o Barramento do Sistema importante na infraestrutura computacional?",
+        "Quais os benefícios de implementar o Barramento do Sistema?",
+        "Por que é essencial incluir o Barramento do Sistema em um projeto de computação?",
+        "Quais as razões por trás da escolha do Barramento do Sistema em sistemas computacionais?",
+        "Por que considerar o Barramento do Sistema na arquitetura de hardware?",
+        "Quais as motivações para a adoção do Barramento do Sistema em sistemas embarcados?",
+        "Por que é vantajoso utilizar o Barramento do Sistema em dispositivos eletrônicos?",
+        "Quais os argumentos que respaldam o uso do Barramento do Sistema na indústria de TI?",
+        "Por que é recomendado integrar o Barramento do Sistema em sistemas distribuídos?",
+        "Quais as justificações para a inclusão do Barramento do Sistema em redes de computadores?",
+        "Por que é importante entender o papel do Barramento do Sistema em microcontroladores?",
+        "Quais os fundamentos para empregar o Barramento do Sistema em sistemas embarcados?",
+        "Por que é relevante abordar o Barramento do Sistema em arquitetura de sistemas?",
+        "Quais os motivos por trás da prevalência do Barramento do Sistema na computação moderna?",
+        "Por que é fundamental explorar o Barramento do Sistema na infraestrutura de servidores?",
+        "Quais os fatores que tornam o Barramento do Sistema crucial para a interconexão de componentes?"
+      ],
+      "responses": [
+        "O Barramento do Sistema é essencial para o funcionamento correto de um computador. Ele fornece uma via de comunicação para transmitir informações e controlar o fluxo de dados entre os diferentes componentes do sistema, como o processador, a memória e os dispositivos de entrada/saída."
       ]
     }
   ]
