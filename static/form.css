@@ -4,6 +4,7 @@ body {
 
 .container {
     display: flex;
+    margin-top: 4%;
     justify-content: center;
 }
 
@@ -16,6 +17,7 @@ body {
 button {
     width: 110px;
     margin-bottom: 1em;
+    margin-left: .7em;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 7px;
