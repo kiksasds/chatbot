@@ -102,7 +102,7 @@ def form():
             f.seek(0)
             f.write(json.dumps(jsonArr, indent=2, ensure_ascii=False))
             f.truncate()
-            return json.loads('{"tag":"","patterns":[],"responses":[]}')
+        return json.loads('{"tag":"","patterns":[],"responses":[]}')
     if request.method == 'GET' and request.args.get('tag'):
         tag = request.args.get('tag')
         with open('intents.json', 'r+', encoding='utf-8') as f:

@@ -61,9 +61,20 @@ be.onclick = () => {
 //botao atualizar
 bu = cb('Atualizar');
 bu.onclick = () => {
+	d = new Object();
+	d.tag = it.value;
+	d.patterns = [];
+	iqs.forEach((v) => {if(v.value != "") d.patterns.push(v.value)});
+	d.responses = [];
+	ias.forEach((v) => {if(v.value != "") d.responses.push(v.value)});
+
     fetch('http://127.0.0.1:5000/form?tag='+it.value, {
 		method: 'PUT',
-		mode: 'cors'
+		body: JSON.stringify({ message: d }),
+		mode: 'cors',
+		headers: {
+		  'Content-Type': 'application/json'
+		}
 	})
 	.then(r => r.json())
 	.then(r => {
@@ -134,15 +145,24 @@ bs.onclick = () => {
         if(d.patterns == []) hq.innerText = "Em branco Perguntas:";
         if(d.responses == []) ha.innerText = "Em branco Respostas:";
     }
-	console.log(JSON.stringify(d));
 
-	fetch('http://127.0.0.1:5000/form', {
-		method: 'POST',
-		body: JSON.stringify({ message: d }),
-		mode: 'cors',
-		headers: {
-		  'Content-Type': 'application/json'
-		}
+    fetch('http://127.0.0.1:5000/form?tag='+it.value, {
+		method: 'GET',
+		mode: 'cors'
+	})
+	.then(r => r.json())
+	.then(r => {
+	    if("" == r['tag']){
+            fetch('http://127.0.0.1:5000/form', {
+            method: 'POST',
+            body: JSON.stringify({ message: d }),
+            mode: 'cors',
+            headers: {'Content-Type': 'application/json'}
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+	    }
 	})
 	.catch((error) => {
 		console.error('Error:', error);
