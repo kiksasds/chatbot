@@ -107,7 +107,6 @@
         "O que é a CPU em um computador?",
         "Poderia me explicar o que é a unidade central de processamento?",
         "O que faz o processador em um computador?",
-        "Qual é a importância do processador em um computador?",
         "Poderia me dizer qual é a função da CPU em um computador?"
       ],
       "responses": [
@@ -240,7 +239,17 @@
         "Por que o processador é um dos elementos-chave na determinação da velocidade e eficiência de um PC?",
         "Descreva a importância do processador na execução das tarefas de um computador.",
         "Quais são os benefícios de ter um processador poderoso em um sistema computacional?",
-        "O que faz do processador um componente crucial para a capacidade de processamento de um computador?"
+        "O que faz do processador um componente crucial para a capacidade de processamento de um computador?",
+        "Como o processador influencia na performance e na qualidade de um computador?",
+        "Qual o papel do processador na realização das operações lógicas e aritméticas de um computador?",
+        "O que torna o processador um dos componentes mais essenciais de um computador?",
+        "De que forma o processador interage com os outros componentes do computador para garantir o seu funcionamento adequado?",
+        "Qual a relação entre o processador e a velocidade de processamento de dados de um computador?",
+        "O que significa dizer que o processador é o cérebro do computador?",
+        "Quais são as características que definem a potência e a eficácia de um processador?",
+        "Como escolher o melhor processador para as suas necessidades de uso do computador?",
+        "Quais são os tipos e as categorias de processadores existentes no mercado?",
+        "O que é preciso levar em conta na hora de avaliar o desempenho de um processador?"
       ],
       "responses": [
         "O processador é o cérebro do computador, responsável por realizar todas as operações de processamento de dados. Ele executa as instruções dos programas, manipula os dados e coordena o funcionamento de todos os outros componentes do sistema. A qualidade e o desempenho do processador têm um impacto significativo no desempenho geral do computador."
@@ -302,7 +311,17 @@
         "Quais são os cenários em que é especialmente importante ter um Barramento do Sistema eficiente?",
         "Quando a velocidade do Barramento do Sistema se torna um fator determinante?",
         "O Barramento do Sistema é sempre necessário, ou há momentos específicos em que ele se destaca?",
-        "Como a demanda por um processamento mais rápido influencia a escolha do Barramento do Sistema?"
+        "Como a demanda por um processamento mais rápido influencia a escolha do Barramento do Sistema?",
+        "Em quais circunstâncias é apropriado usar o Barramento do Sistema?",
+        "Quando é aconselhável empregar o Barramento do Sistema?",
+        "Quando o Barramento do Sistema se torna uma escolha ideal?",
+        "Quando o desempenho do Barramento do Sistema é crucial?",
+        "Quais são os momentos ideais para implementar o Barramento do Sistema?",
+        "Em que situações o uso do Barramento do Sistema é vantajoso?",
+        "Quando a arquitetura de um sistema se beneficia do Barramento do Sistema?",
+        "Quais são os indicativos de que o Barramento do Sistema é necessário?",
+        "Em que cenários o Barramento do Sistema é a melhor opção?",
+        "Quando o Barramento do Sistema se destaca como uma solução?"
       ],
       "responses": [
         "O Barramento do Sistema é usado sempre que o computador está em execução. Ele é importante para fornecer uma via de comunicação para transmitir informações e controlar o fluxo de dados dentro do computador."

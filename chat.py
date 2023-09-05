@@ -11,7 +11,8 @@ from transformers import AutoModel, AutoTokenizer
 from model import BERT_Arch
 import re
 import pickle
-
+import transformers
+import sklearn
 with open('intents.json', 'r', encoding='utf-8') as f:
     intents = json.load(f)
 
@@ -31,7 +32,6 @@ if os.path.exists('label_encoder.pkl'):
     with open('label_encoder.pkl', 'rb') as f:
         le = pickle.load(f)
 else:
-    print('não tem?')
     le = LabelEncoder()
     df['label'] = le.fit_transform(df['label'])
     with open('label_encoder.pkl', 'wb') as f:
@@ -39,8 +39,8 @@ else:
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-tokenizer = AutoTokenizer.from_pretrained('neuralmind/bert-base-portuguese-cased')
-bert = AutoModel.from_pretrained('neuralmind/bert-base-portuguese-cased')
+tokenizer = AutoTokenizer.from_pretrained('tokenizer_directory')
+bert = AutoModel.from_pretrained('bert_directory')
 
 FILE = "bert_model.pth"
 checkpoint = torch.load(FILE)
@@ -88,7 +88,7 @@ def get_response(msg, username, registration):
     prob = torch.softmax(output, dim=1)[0][predicted].item()
     print('probabilidade', prob)
     result = "Desculpe, não consegui encontrar uma resposta adequada."
-    if prob > 0.8:
+    if prob > 0.7:
         for i in intents['intents']:
             if i["tag"] == pred:
                 print("tag", pred)
@@ -128,7 +128,6 @@ if __name__ == "__main__":
         sentence = input("You: ")
         if sentence == "quit":
             break
-
         resp = get_response(sentence,username,registration)
 
 

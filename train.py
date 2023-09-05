@@ -8,7 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.utils import compute_class_weight
 from torch.optim import lr_scheduler
 from torch.utils.data import Dataset, DataLoader, TensorDataset, RandomSampler
-from transformers import BertTokenizerFast, AutoModel, BertTokenizer, BertModel, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer
 from torchinfo import summary
 from transformers import AdamW
 from model import BERT_Arch
@@ -57,7 +57,7 @@ train_seq = torch.tensor(tokens_train['input_ids'])
 train_mask = torch.tensor(tokens_train['attention_mask'])
 train_y = torch.tensor(train_labels.tolist())
 
-batch_size = 32
+batch_size = 16
 train_data = TensorDataset(train_seq, train_mask, train_y)
 train_sampler = RandomSampler(train_data)
 train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
@@ -72,7 +72,7 @@ model = model.to(device)
 
 # summary(model)
 
-optimizer = AdamW(model.parameters(), lr=1e-3, no_deprecation_warning=True)
+optimizer = AdamW(model.parameters(), lr=1e-2, no_deprecation_warning=True)
 class_wts = compute_class_weight('balanced', classes=np.unique(train_labels), y=train_labels)
 
 # convert class weights to tensor
@@ -84,7 +84,7 @@ cross_entropy = nn.NLLLoss(weight=weights)
 # empty lists to store training and validation loss of each epoch
 train_losses = []
 # number of training epochs
-epochs = 150
+epochs = 100
 # We can also use learning rate scheduler to achieve better results
 lr_sch = lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.1)
 
@@ -134,7 +134,7 @@ for epoch in range(epochs):
 
 
 def get_prediction(str):
-    str = re.sub(r'[^a-zA-Z\s]', '', str)
+    str = re.sub(r'[^a-zA-Z\sáéíóúâêôãõçü]', '', str)
     test_text = [str]
     model.eval()
 

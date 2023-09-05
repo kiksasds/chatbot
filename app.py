@@ -7,6 +7,10 @@ from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor
     exibir_perguntas_nao_respondidas
 from chat import get_response, reload_model
 import os
+import torch
+import transformers
+import sklearn
+import pandas as pd
 
 app = Flask(__name__)
 app.secret_key = 'ChaveSecreta'
