@@ -124,6 +124,7 @@ def form():
 def predict():
     global tag
     text = request.get_json().get("message")
+    text = text.lower()
     username = session.get('username')
     registration = session.get('registration')
 

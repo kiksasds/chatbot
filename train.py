@@ -14,6 +14,22 @@ from transformers import AdamW
 from model import BERT_Arch
 import re
 import random
+import time
+
+
+def set_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    np.random.seed(seed)
+    random.seed(seed)
+
+
+seed = int(time.time())
+print(f"Seed: {seed}")
+
+# Usa a seed para inicializar o gerador de números aleatórios
+np.random.seed(seed)
 
 with open('intents.json', 'r', encoding='utf-8') as f:
     intents = json.load(f)
@@ -84,9 +100,9 @@ cross_entropy = nn.NLLLoss(weight=weights)
 # empty lists to store training and validation loss of each epoch
 train_losses = []
 # number of training epochs
-epochs = 100
+epochs = 150
 # We can also use learning rate scheduler to achieve better results
-lr_sch = lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.1)
+lr_sch = lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
 
 
 def train():
@@ -134,8 +150,9 @@ for epoch in range(epochs):
 
 
 def get_prediction(str):
-    str = re.sub(r'[^a-zA-Z\sáéíóúâêôãõçü]', '', str)
-    test_text = [str]
+    stri = re.sub(r'[^a-zA-Z\s]', '', str)
+    stri = stri.lower()
+    test_text = [stri]
     model.eval()
 
     tokens_test_data = tokenizer(
@@ -156,6 +173,8 @@ def get_prediction(str):
     print("Intent Identified: ", le.inverse_transform(preds)[0])
     return le.inverse_transform(preds)[0]
 
+
+get_prediction("o que é processador?")
 
 torch.save({
     'model_state_dict': model.state_dict(),

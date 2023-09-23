@@ -13,6 +13,7 @@ import re
 import pickle
 import transformers
 import sklearn
+
 with open('intents.json', 'r', encoding='utf-8') as f:
     intents = json.load(f)
 
@@ -54,15 +55,17 @@ model.eval()
 
 bot_name = "Carol"
 
+
 def get_prediction(str):
-    str = re.sub(r'[^a-zA-Z\s]', '', str)
-    test_text = [str]
+    stri = re.sub(r'[^a-zA-Z\sáéíóúÁÉÍÓÚâêîôûÂÊÎÔÛãõÃÕçÇ]', '', str)
+    stri = stri.lower()
+    test_text = [stri]
     model.eval()
 
     tokens_test_data = tokenizer(
         test_text,
         max_length=64,
-        padding='max_length',
+        padding="max_length",
         truncation=True,
         return_token_type_ids=False
     )
@@ -88,7 +91,12 @@ def get_response(msg, username, registration):
     prob = torch.softmax(output, dim=1)[0][predicted].item()
     print('probabilidade', prob)
     result = "Desculpe, não consegui encontrar uma resposta adequada."
-    if prob > 0.7:
+    if 0.4 < prob < 0.7:
+        for i in intents['intents']:
+            if i["tag"] == pred:
+                return f"Desculpe, não entendi o que você quis dizer. Você perguntou sobre '{pred}'...?", pred
+
+    elif prob > 0.7:
         for i in intents['intents']:
             if i["tag"] == pred:
                 print("tag", pred)
@@ -119,6 +127,7 @@ def reload_model():
 
     print("Model reloaded.")
 
+
 if __name__ == "__main__":
     print("Let's chat! (type 'quit' to exit)")
     username = 'dsadas'
@@ -128,6 +137,4 @@ if __name__ == "__main__":
         sentence = input("You: ")
         if sentence == "quit":
             break
-        resp = get_response(sentence,username,registration)
-
-
+        resp = get_response(sentence, username, registration)

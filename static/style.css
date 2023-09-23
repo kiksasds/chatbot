@@ -14,11 +14,11 @@ body {
 }
 
 *, html {
-    --primaryGradient: linear-gradient(93.12deg, #70A236 0.52%, #70A236 100%);
-    --secondaryGradient: linear-gradient(268.91deg, #70A236 -2.14%, #70A236 99.69%);
+    --primaryGradient: linear-gradient(93.12deg, #B22222 0.52%, #B22222 100%);
+    --secondaryGradient: linear-gradient(268.91deg, #B22222 -2.14%, #B22222 99.69%);
     --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-    --primary: #68912e;
+    --primary: #B22222;
 }
 
 /* CHATBOX
