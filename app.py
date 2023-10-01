@@ -81,7 +81,7 @@ def base():
     return render_template('base.html', username=username, registration=registration)
 
 
-@app.route('/form', methods=['POST', 'GET', 'DELETE'])
+@app.route('/form', methods=['POST', 'PUT', 'GET', 'DELETE'])
 def form():
     if not is_tutor(session['username']):
         return 'you :' + session['username'] + ' does not have permission ' + "<a href='/'>Home</a>"
@@ -94,6 +94,21 @@ def form():
             f.write(json.dumps(novo, indent=2, ensure_ascii=False))
             f.truncate()
         return text
+    if request.method == 'PUT' and request.args.get('tag'):
+        tag = request.args.get('tag')
+        with open('intents.json', 'r+', encoding='utf-8') as f:
+            jsonArr = json.load(f)
+            intents = jsonArr['intents']
+            for i, intent in enumerate(intents):
+                if intent['tag'] == tag:
+                    intents.pop(i)
+                    text = request.get_json().get("message")
+                    intents.append(text)
+                    break
+            f.seek(0)
+            f.write(json.dumps(jsonArr, indent=2, ensure_ascii=False))
+            f.truncate()
+            return json.loads('{"tag":"","patterns":[],"responses":[]}')
     if request.method == 'GET' and request.args.get('tag'):
         tag = request.args.get('tag')
         with open('intents.json', 'r+', encoding='utf-8') as f:
@@ -111,6 +126,7 @@ def form():
             for i, intent in enumerate(intents):
                 if intent['tag'] == tag:
                     intents.pop(i)
+                    break
             f.seek(0)
             f.write(json.dumps(jsonArr, indent=2, ensure_ascii=False))
             f.truncate()

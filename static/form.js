@@ -58,6 +58,24 @@ be.onclick = () => {
 	be.remove();
 }
 
+//botao atualizar
+bu = cb('Atualizar');
+bu.onclick = () => {
+    fetch('http://127.0.0.1:5000/form?tag='+it.value, {
+		method: 'PUT',
+		mode: 'cors'
+	})
+	.then(r => r.json())
+	.then(r => {
+	    it.value = r['tag'];
+	    setIxs(iqs, r['patterns'], dq, bq);
+	    setIxs(ias, r['responses'], da, ba);
+	})
+	.catch((error) => {
+		console.error('Error:', error);
+	});
+}
+
 //campos input para recuperar valores
 ht = ch("Tag:");
 it = ci();
@@ -75,6 +93,7 @@ bt.onclick = () =>{
 	    it.value = r['tag'];
 	    setIxs(iqs, r['patterns'], dq, bq);
 	    setIxs(ias, r['responses'], da, ba);
+	    f.appendChild(bu);
 	    f.appendChild(be);
 	})
 	.catch((error) => {
