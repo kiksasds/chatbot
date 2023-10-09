@@ -39,7 +39,7 @@ else:
         pickle.dump(le, f)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+print(device)
 tokenizer = AutoTokenizer.from_pretrained('tokenizer_directory')
 bert = AutoModel.from_pretrained('bert_directory')
 
@@ -103,6 +103,11 @@ def get_response(msg, username, registration):
                 result = random.choice(i['responses'])
                 break
         return result, pred
+    elif prob > 0.5 and pred == "desconhecido":
+        save_unanswered_question(msg, username, registration)
+        exibir_perguntas_nao_respondidas()
+        return f"Enviamos a pergunta ao tutor e logo mais ele responderá", pred
+
     else:
         print("prob3", prob)
         save_unanswered_question(msg, username, registration)

@@ -110,4 +110,16 @@ def exibir_perguntas_nao_respondidas():
 
     return perguntas
 
+cursor.execute('''CREATE TABLE IF NOT EXISTS feedback
+                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  username TEXT NOT NULL,
+                  question TEXT NOT NULL,
+                  answer TEXT NOT NULL,
+                  rating TEXT NOT NULL)''')
+conn.commit()
 
+def save_feedback(username, question, answer, rating):
+    cursor.execute("INSERT INTO feedback (username, question, answer, rating) VALUES (?, ?, ?, ?)",
+                   (username, question, answer, rating))
+    conn.commit()
+    print("Feedback salvo com sucesso.")
