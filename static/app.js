@@ -17,6 +17,10 @@ class Chatbox {
 
         sendButton.addEventListener('click', () => this.onSendButton(chatBox))
 
+        //escreve historico
+        this.messages = this.messages.concat(history);
+        this.updateChatText(chatBox)
+
         const node = chatBox.querySelector('input');
         node.addEventListener("keyup", ({key}) => {
             if (key === "Enter") {

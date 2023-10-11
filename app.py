@@ -1,3 +1,4 @@
+import datetime
 from builtins import enumerate
 
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session
@@ -67,6 +68,11 @@ def cadastro():
     cadastrar_usuario(username, registration, password, tutor)
     exibir_usuarios()
 
+    # Cria uma Seção pro usuario
+    session['username'] = username
+    session['registration'] = registration
+    session['history'] = []
+
     # Redirecionar para a página de login com uma mensagem de sucesso
     return redirect(url_for('login', sucesso=True))
 
@@ -76,9 +82,10 @@ def base():
     # Obter o nome de usuário e a matrícula da sessão
     username = session.get('username')
     registration = session.get('registration')
+    history = session.get('history')
 
     # Passar o nome de usuário e a matrícula para o template
-    return render_template('base.html', username=username, registration=registration)
+    return render_template('base.html', username=username, registration=registration, history=history)
 
 
 @app.route('/form', methods=['POST', 'PUT', 'GET', 'DELETE'])
@@ -143,12 +150,14 @@ def predict():
     text = text.lower()
     username = session.get('username')
     registration = session.get('registration')
+    session['history'].append('{ name: '+username+', message: '+text+', datetime: '+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+'}')
 
     response_and_tag = get_response(text, username, registration)
     if response_and_tag is not None:
         response, predicted_tag = response_and_tag
         tag = predicted_tag
         message = {"answer": response}
+        session['history'].append('{ name: "chatbot", message: ' + response + ', datetime: ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '}')
         return jsonify(message)
     else:
         # Lógica para tratar o caso em que get_response() retorna None
