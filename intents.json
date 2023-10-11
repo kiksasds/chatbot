@@ -333,6 +333,34 @@
       "responses": [
         "o barramento do sistema é essencial para o funcionamento correto de um computador. Ele fornece uma via de comunicação para transmitir informações e controlar o fluxo de dados entre os diferentes componentes do sistema, como o processador, a memória e os dispositivos de entrada/saída."
       ]
+    },
+    {
+      "tag": "desconhecido",
+      "patterns": [
+        "Qual é a cor do vento, você sabe?",
+        "Quantos anos tem o universo, alguma ideia?",
+        "Por que os gatos não voam, você sabe?",
+        "Onde fica a montanha mais alta do oceano, você sabe?",
+        "Quem ganhou a Copa do Mundo em 2025, você sabe?",
+        "Como posso viajar no tempo, alguma ideia?",
+        "Quantos planetas existem no Sistema Solar, você sabe?",
+        "Quem foi o primeiro humano na Terra, alguma ideia?",
+        "O que é um buraco negro, você sabe?",
+        "Como posso falar com alienígenas, alguma ideia?",
+        "Onde fica a cidade perdida de Atlântida, você sabe?",
+        "Quem inventou a roda, alguma ideia?",
+        "Por que o céu é azul durante o dia e preto à noite, você sabe?",
+        "O que acontece quando um imortal é mordido por um vampiro, alguma ideia?",
+        "Como posso me tornar invisível, você sabe?",
+        "Onde está o final do arco-íris, alguma ideia?",
+        "Quem construiu as pirâmides do Egito, você sabe?",
+        "Por que os pássaros não caem quando estão dormindo, alguma ideia?",
+        "O que aconteceria se eu caísse em um buraco negro, você sabe?",
+        "Como posso voar, alguma ideia?"
+      ],
+      "responses": [
+        "Enviamos a pergunta ao tutor e logo mais ele responderá"
+      ]
     }
   ]
 }

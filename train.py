@@ -16,21 +16,6 @@ import re
 import random
 import time
 
-
-def set_seed(seed):
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
-    np.random.seed(seed)
-    random.seed(seed)
-
-
-seed = int(time.time())
-print(f"Seed: {seed}")
-
-# Usa a seed para inicializar o gerador de números aleatórios
-np.random.seed(seed)
-
 with open('intents.json', 'r', encoding='utf-8') as f:
     intents = json.load(f)
 
@@ -149,8 +134,8 @@ for epoch in range(epochs):
     print(f'\nTraining Loss: {train_loss:.3f}')
 
 
-def get_prediction(str):
-    stri = re.sub(r'[^a-zA-Z\s]', '', str)
+def pred(str):
+    stri = re.sub(r'[^a-zA-Z\sáéíóúÁÉÍÓÚâêîôûÂÊÎÔÛãõÃÕçÇ]', '', str)
     stri = stri.lower()
     test_text = [stri]
     model.eval()
@@ -174,7 +159,7 @@ def get_prediction(str):
     return le.inverse_transform(preds)[0]
 
 
-get_prediction("o que é processador?")
+pred("o que faz a memória ram?")
 
 torch.save({
     'model_state_dict': model.state_dict(),

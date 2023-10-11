@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for, s
 import random
 import json
 from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration, \
-    exibir_perguntas_nao_respondidas
+    exibir_perguntas_nao_respondidas, save_feedback
 from chat import get_response, reload_model
 import os
 import torch
@@ -161,7 +161,6 @@ def predict():
         return jsonify(message)
     else:
         # Lógica para tratar o caso em que get_response() retorna None
-        # Por exemplo, você pode retornar uma resposta padrão ou uma mensagem de erro.
         message = {"answer": "Desculpe, ocorreu um erro ao processar a pergunta."}
         return jsonify(message)
 
@@ -227,6 +226,15 @@ def treino():
 
     return "", 204
 
+@app.post("/save_feedback")
+def handle_save_feedback():
+    data = request.get_json()
+    username = data.get('username')
+    question = data.get('question')
+    answer = data.get('answer')
+    rating = data.get('rating')
+    save_feedback(username, question, answer, rating)
+    return jsonify({"message": "Feedback salvo com sucesso."})
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,3 +1,60 @@
+function showFeedbackIcons(messageItem) {
+    // Cria a div feedback-icons se ainda não existir
+    let feedbackIcons = messageItem.querySelector('.feedback-icons');
+    if (!feedbackIcons) {
+        feedbackIcons = document.createElement('div');
+        feedbackIcons.className = 'feedback-icons';
+        feedbackIcons.style.display = 'none'; // Esconde os ícones inicialmente
+        feedbackIcons.innerHTML = `
+            <img src="../static/image/felicidade.png" alt="image" width="20" height="20">
+            <img src="../static/image/neutro.png" alt="image" width="20" height="20">
+            <img src="../static/image/triste.png" alt="image" width="20" height="20">
+
+        `;
+        messageItem.appendChild(feedbackIcons);
+    }
+
+    // Alterna a visibilidade da div feedback-icons
+    if (feedbackIcons.style.display === 'none') {
+        feedbackIcons.style.display = 'flex';
+    } else {
+        feedbackIcons.style.display = 'none';
+    }
+
+    feedbackIcons.querySelectorAll('img').forEach(function(icon, index) {
+        icon.addEventListener('click', function() {
+            // Determina a nova imagem com base no índice do ícone
+            let newIcon;
+            let rating;
+            switch (index) {
+                case 0:
+                    rating = 'bom';
+                    newIcon = '../static/image/felicidade_2.png';
+                    break;
+                case 1:
+                    rating = 'neutro';
+                    newIcon = '../static/image/neutro_2.png';
+                    break;
+                case 2:
+                    rating = 'ruim';
+                    newIcon = '../static/image/triste_2.png';
+                    break;
+            }
+
+            // Altera o atributo src do ícone
+            icon.src = newIcon;
+            fetch('/save_feedback', {
+        method: 'POST',
+        body: JSON.stringify({ username: 'nome_do_usuario', question: 'pergunta', answer: 'resposta', rating: rating }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+            event.stopPropagation();
+        });
+    });
+}
+
 class Chatbox {
     constructor() {
         this.args = {
@@ -63,6 +120,8 @@ class Chatbox {
               let msg2 = { name: "Carol", message: r.answer };
               this.messages.push(msg2);
               this.updateChatText(chatbox)
+              let feedbackIcons = chatbox.querySelector('.feedback-icons');
+              feedbackIcons.style.display = 'flex';
               textField.value = ''
               if (msg2.message.startsWith('Desculpe')){
                 this.useFallback = true;
@@ -122,22 +181,26 @@ class Chatbox {
 
 
     updateChatText(chatbox) {
-        var html = '';
-        this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Carol")
-            {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
-            }
-            else
-            {
-                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
-            }
-          });
+    var html = '';
+    this.messages.slice().reverse().forEach(function(item, index) {
+        if (item.name === "Carol")
+        {
+            html += '<div class="messages__item messages__item--visitor" onclick="showFeedbackIcons(this)">' + item.message + '</div>';
+        }
+        else
+        {
+            html += '<div class="messages__item messages__item--operator">' + item.message + '</div>';
+        }
+    });
 
-        const chatmessage = chatbox.querySelector('.chatbox__messages');
-        chatmessage.innerHTML = html;
-        chatmessage.scrollTop = chatmessage.scrollHeight;
-    }
+    const chatmessage = chatbox.querySelector('.chatbox__messages');
+    chatmessage.innerHTML = html;
+    chatmessage.scrollTop = chatmessage.scrollHeight;
+}
+
+
+
+
 }
 
 fetch('/check_tutor')
