@@ -1,11 +1,11 @@
 import datetime
 from builtins import enumerate
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify, redirect, url_for, session, make_response
 import random
 import json
 from database import cadastrar_usuario, exibir_usuarios, entar_usuario, is_tutor, get_registration, \
-    exibir_perguntas_nao_respondidas, save_feedback
+    exibir_perguntas_nao_respondidas, get_feedback, save_feedback, get_feedback_by_tag, get_all_feedback
 from chat import get_response, reload_model
 import os
 import torch
@@ -143,6 +143,29 @@ def form():
     return render_template('form.html')
 
 
+@app.post("/save_feedback")
+def handle_save_feedback():
+    data = request.get_json()
+    rating = data.get('rating')
+    username = session.get('username')
+    msg = session.get('msg')
+    result = session.get('result')
+    tag_banco = session.get('tag')
+    if rating is not None:
+        save_feedback(username, msg, result, tag_banco, rating)
+    return jsonify(message="Feedback salvo com sucesso2.")
+
+
+@app.route('/feedback')
+def feedback():
+    all_feedback = get_all_feedback()
+    grouped_feedback = get_feedback()
+    print(all_feedback)
+    print(grouped_feedback)
+
+    return render_template('feedback.html', all_feedback=all_feedback, grouped_feedback=grouped_feedback)
+
+
 @app.post("/predict")
 def predict():
     global tag
@@ -156,6 +179,9 @@ def predict():
     if response_and_tag is not None:
         response, predicted_tag = response_and_tag
         tag = predicted_tag
+        session['msg'] = text
+        session['result'] = response
+        session['tag'] = tag
         message = {"answer": response}
         session['history'].append('{ name: "chatbot", message: ' + response + ', datetime: ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '}')
         return jsonify(message)
@@ -226,15 +252,25 @@ def treino():
 
     return "", 204
 
-@app.post("/save_feedback")
-def handle_save_feedback():
-    data = request.get_json()
-    username = data.get('username')
-    question = data.get('question')
-    answer = data.get('answer')
-    rating = data.get('rating')
-    save_feedback(username, question, answer, rating)
-    return jsonify({"message": "Feedback salvo com sucesso."})
+
+@app.route('/details/<tag>', methods=['GET'])
+def details(tag):
+    # Buscar os dados do banco de dados
+    data = get_feedback_by_tag(tag)
+
+    # Converter os dados para um DataFrame do pandas
+    df = pd.DataFrame(data, columns=['ID', 'Usuário', 'Pergunta', 'Resposta', 'Tag', 'Avaliação'])
+
+    # Converter o DataFrame para CSV
+    csv = df.to_csv(index=False, header=True)
+
+    # Criar a resposta
+    response = make_response(csv)
+    response.headers['Content-Disposition'] = 'attachment; filename=details.csv'
+    response.headers['Content-Type'] = 'text/csv'
+
+    return response
+
 
 if __name__ == "__main__":
     app.run(debug=True)

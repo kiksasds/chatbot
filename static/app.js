@@ -1,4 +1,4 @@
-function showFeedbackIcons(messageItem) {
+function showFeedbackIcons(messageItem,question, answer) {
     // Cria a div feedback-icons se ainda não existir
     let feedbackIcons = messageItem.querySelector('.feedback-icons');
     if (!feedbackIcons) {
@@ -45,7 +45,7 @@ function showFeedbackIcons(messageItem) {
             icon.src = newIcon;
             fetch('/save_feedback', {
         method: 'POST',
-        body: JSON.stringify({ username: 'nome_do_usuario', question: 'pergunta', answer: 'resposta', rating: rating }),
+        body: JSON.stringify({ rating: rating }),
         headers: {
             'Content-Type': 'application/json'
         },

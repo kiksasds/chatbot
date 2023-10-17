@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{{ url_for('static', filename='feedback.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Avaliações</title>
+</head>
+<body>
+<h1>Avaliações dos Usuários</h1>
+<table>
+    <tr>
+        <th>Intenção</th>
+        <th>Avaliação Média</th>
+    </tr>
+    {% for row in grouped_feedback %}
+    <tr class="data-row">
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<button id="details-button" disabled>Detalhes</button>
+<script>
+let selectedTag = null;
+
+document.querySelectorAll('.data-row').forEach(function(row) {
+    row.addEventListener('click', function() {
+        // Remover a classe 'selected' de todas as linhas
+        document.querySelectorAll('.data-row').forEach(function(row) {
+            row.classList.remove('selected');
+        });
+
+        // Adicionar a classe 'selected' à linha clicada
+        this.classList.add('selected');
+
+        // Definir a tag selecionada
+        selectedTag = this.firstElementChild.textContent;
+
+        // Habilitar o botão de detalhes
+        document.getElementById('details-button').disabled = false;
+    });
+});
+
+document.getElementById('details-button').addEventListener('click', function() {
+    if (selectedTag !== null) {
+        window.location.href = '/details/' + selectedTag;
+    }
+});
+</script>
+</body>
+</html>

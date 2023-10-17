@@ -1,141 +1,141 @@
 {
   "intents": [
     {
-      "tag":"o que é arquitetura de computadores",
-         "patterns":[
-            "o que é arquitetura de computadores?",
-            "defina arquitetura de computadores",
-            "me explique a arquitetura de computadores",
-            "me fale sobre a arquitetura de computadores",
-            "poderia me explicar o que é arquitetura de computadores?",
-            "o que significa arquitetura de computadores?",
-            "qual é a definição de arquitetura de computadores?",
-            "você poderia me dizer o que é arquitetura de computadores?",
-            "o que envolve a arquitetura de computadores?",
-            "poderia me dar uma explicação sobre arquitetura de computadores?",
-            "o que compreende a arquitetura de computadores?",
-            "qual é o conceito de arquitetura de computadores?",
-            "você poderia me fornecer informações sobre arquitetura de computadores?",
-            "o que é estudado na arquitetura de computadores?",
-            "poderia me esclarecer sobre o que é arquitetura de computadores?",
-            "o que abrange a área de arquitetura de computadores?",
-            "qual é o significado de arquitetura de computadores na informática?",
-            "você poderia me dar uma definição sobre arquitetura de computadores?",
-            "o que é tratado na arquitetura de computadores?",
-            "poderia me dizer mais sobre o campo da arquitetura de computadores?"
-         ],
-         "responses":[
-            "a arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo."
-         ]
-      },
-      {
-         "tag":"cumprimento",
-         "patterns":[
-            "olá",
-            "oi",
-            "olá!",
-            "oi, tudo bem?",
-            "e aí?",
-            "como vai?",
-            "bom dia!",
-            "boa tarde!",
-            "boa noite!",
-            "olá, como posso usar isso?",
-            "saudações!",
-            "hey!",
-            "opa!",
-            "hi!",
-            "olá, estou aqui para aprender.",
-            "saudações calorosas!"
-         ],
-         "responses":[
-            "olá, como está? Sou um chatbot responsável por retirar suas dúvidas"
-         ]
-      },
-      {
-         "tag":"quais são os componentes de um computador",
-         "patterns":[
-            "quais são os componentes da organização de um computador?",
-            "quais são os principais elementos que compõem um computador?",
-            "explique os componentes essenciais em um sistema de computador.",
-            "quais são os elementos básicos de um pc?",
-            "descreva os principais componentes que formam um computador pessoal.",
-            "quais são as partes fundamentais que constituem um sistema de computação?",
-            "o que compõe a estrutura básica de um computador?",
-            "quais são os elementos que fazem parte da organização interna de um computador?",
-            "descreva a arquitetura básica de um computador e seus componentes.",
-            "quais são as peças essenciais de um computador e como elas funcionam em conjunto?",
-            "quais são os principais componentes de um computador?",
-            "poderia me dizer quais são os componentes de um computador?",
-            "quais são as partes que compõem um computador?",
-            "o que é necessário para montar um computador?",
-            "quais são os elementos fundamentais de um computador?",
-            "poderia me listar os componentes de um computador?",
-            "quais são as peças que formam um computador?",
-            "o que é preciso para construir um computador?",
-            "quais são os componentes básicos de um computador?",
-            "poderia me explicar quais são as partes de um computador?",
-            "o que compõe o hardware de um computador?",
-            "poderia me listar as partes fundamentais de um computador?"
-         ],
-         "responses":[
-            "os componentes da organização de um computador incluem a unidade central de processamento (cpu), a memória, os dispositivos de entrada/saída (E/S), o barramento do sistema e o controlador de interrupções."
-         ]
-      },
-      {
-         "tag":"o que é processador",
-         "patterns":[
-            "o que é processador?",
-            "defina processador",
-            "o que é a cpu de um computador?",
-            "explique o conceito de processador em computação.",
-            "o que significa a sigla cpu?",
-            "defina a função de um processador em um computador.",
-            "o que é o cérebro do computador?",
-            "explique o papel do processador no funcionamento de um computador.",
-            "o que é um chip de processamento?",
-            "qual é a importância do processador em um sistema computacional?",
-            "descreva o papel do processador no processamento de dados em um computador.",
-            "o que é a unidade central de processamento (cpu)?",
-            "poderia me explicar o que é um processador?",
-            "qual é a função de um processador em um computador?",
-            "o que é a unidade de processamento central de um computador?",
-            "poderia me dizer o que é um processador?",
-            "qual é o papel do processador em um sistema de computação?",
-            "o que é a cpu em um computador?",
-            "poderia me explicar o que é a unidade central de processamento?",
-            "poderia me dizer qual é a função da cpu em um computador?"
-         ],
-         "responses":[
-            "um processador, também conhecido como unidade central de processamento (CPU), é o componente principal de um computador responsável por executar instruções e realizar operações lógicas e aritméticas em dados."
-         ]
-      },
-      {
-         "tag":"o que é memória ram",
-         "patterns":[
-            "o que é memória ram?",
-            "defina memória ram",
-            "o que significa ram em um computador?",
-            "explique a função da memória ram em um sistema de computador.",
-            "o que é a memória de acesso aleatório?",
-            "qual é o papel da ram em um pc?",
-            "o que é a ram e por que ela é importante?",
-            "o que é a memória ram e como ela funciona?",
-            "qual é a utilidade da memória ram em um dispositivo eletrônico?",
-            "poderia me explicar o que é memória ram?",
-            "por que a ram é necessária em um computador?",
-            "o que é a memória de acesso aleatório (ram) e qual é a sua função?",
-            "o que é ram em termos de hardware?",
-            "poderia me dizer o que é a memória ram em um computador?",
-            "o que é a ram e qual é a sua importância em um sistema de computador?",
-            "qual é a função da memória ram em um dispositivo eletrônico?",
-            "poderia me explicar qual é a utilidade da ram em um pc?",
-            "o que é a ram e por que ela é crucial em um computador?"
-         ],
-         "responses":[
-            "a memória RAM (Random Access Memory) é um tipo de memória volátil que permite que um computador armazene e acesse dados de forma rápida e aleatória. Ela desempenha um papel fundamental no desempenho geral do sistema."
-         ]
-      },
+      "tag": "o que é arquitetura de computadores",
+      "patterns": [
+        "o que é arquitetura de computadores?",
+        "defina arquitetura de computadores",
+        "me explique a arquitetura de computadores",
+        "me fale sobre a arquitetura de computadores",
+        "poderia me explicar o que é arquitetura de computadores?",
+        "o que significa arquitetura de computadores?",
+        "qual é a definição de arquitetura de computadores?",
+        "você poderia me dizer o que é arquitetura de computadores?",
+        "o que envolve a arquitetura de computadores?",
+        "poderia me dar uma explicação sobre arquitetura de computadores?",
+        "o que compreende a arquitetura de computadores?",
+        "qual é o conceito de arquitetura de computadores?",
+        "você poderia me fornecer informações sobre arquitetura de computadores?",
+        "o que é estudado na arquitetura de computadores?",
+        "poderia me esclarecer sobre o que é arquitetura de computadores?",
+        "o que abrange a área de arquitetura de computadores?",
+        "qual é o significado de arquitetura de computadores na informática?",
+        "você poderia me dar uma definição sobre arquitetura de computadores?",
+        "o que é tratado na arquitetura de computadores?",
+        "poderia me dizer mais sobre o campo da arquitetura de computadores?"
+      ],
+      "responses": [
+        "a arquitetura de computadores é a ciência e a arte de selecionar e interconectar componentes de hardware para criar computadores que atendam aos requisitos funcionais, de desempenho e de custo."
+      ]
+    },
+    {
+      "tag": "cumprimento",
+      "patterns": [
+        "olá",
+        "oi",
+        "olá!",
+        "oi, tudo bem?",
+        "e aí?",
+        "como vai?",
+        "bom dia!",
+        "boa tarde!",
+        "boa noite!",
+        "olá, como posso usar isso?",
+        "saudações!",
+        "hey!",
+        "opa!",
+        "hi!",
+        "olá, estou aqui para aprender.",
+        "saudações calorosas!"
+      ],
+      "responses": [
+        "olá, como está? Sou um chatbot responsável por retirar suas dúvidas"
+      ]
+    },
+    {
+      "tag": "quais são os componentes de um computador",
+      "patterns": [
+        "quais são os componentes da organização de um computador?",
+        "quais são os principais elementos que compõem um computador?",
+        "explique os componentes essenciais em um sistema de computador.",
+        "quais são os elementos básicos de um pc?",
+        "descreva os principais componentes que formam um computador pessoal.",
+        "quais são as partes fundamentais que constituem um sistema de computação?",
+        "o que compõe a estrutura básica de um computador?",
+        "quais são os elementos que fazem parte da organização interna de um computador?",
+        "descreva a arquitetura básica de um computador e seus componentes.",
+        "quais são as peças essenciais de um computador e como elas funcionam em conjunto?",
+        "quais são os principais componentes de um computador?",
+        "poderia me dizer quais são os componentes de um computador?",
+        "quais são as partes que compõem um computador?",
+        "o que é necessário para montar um computador?",
+        "quais são os elementos fundamentais de um computador?",
+        "poderia me listar os componentes de um computador?",
+        "quais são as peças que formam um computador?",
+        "o que é preciso para construir um computador?",
+        "quais são os componentes básicos de um computador?",
+        "poderia me explicar quais são as partes de um computador?",
+        "o que compõe o hardware de um computador?",
+        "poderia me listar as partes fundamentais de um computador?"
+      ],
+      "responses": [
+        "os componentes da organização de um computador incluem a unidade central de processamento (cpu), a memória, os dispositivos de entrada/saída (E/S), o barramento do sistema e o controlador de interrupções."
+      ]
+    },
+    {
+      "tag": "o que é processador",
+      "patterns": [
+        "o que é processador?",
+        "defina processador",
+        "o que é a cpu de um computador?",
+        "explique o conceito de processador em computação.",
+        "o que significa a sigla cpu?",
+        "defina a função de um processador em um computador.",
+        "o que é o cérebro do computador?",
+        "explique o papel do processador no funcionamento de um computador.",
+        "o que é um chip de processamento?",
+        "qual é a importância do processador em um sistema computacional?",
+        "descreva o papel do processador no processamento de dados em um computador.",
+        "o que é a unidade central de processamento (cpu)?",
+        "poderia me explicar o que é um processador?",
+        "qual é a função de um processador em um computador?",
+        "o que é a unidade de processamento central de um computador?",
+        "poderia me dizer o que é um processador?",
+        "qual é o papel do processador em um sistema de computação?",
+        "o que é a cpu em um computador?",
+        "poderia me explicar o que é a unidade central de processamento?",
+        "poderia me dizer qual é a função da cpu em um computador?"
+      ],
+      "responses": [
+        "um processador, também conhecido como unidade central de processamento (CPU), é o componente principal de um computador responsável por executar instruções e realizar operações lógicas e aritméticas em dados."
+      ]
+    },
+    {
+      "tag": "o que é memória ram",
+      "patterns": [
+        "o que é memória ram?",
+        "defina memória ram",
+        "o que significa ram em um computador?",
+        "explique a função da memória ram em um sistema de computador.",
+        "o que é a memória de acesso aleatório?",
+        "qual é o papel da ram em um pc?",
+        "o que é a ram e por que ela é importante?",
+        "o que é a memória ram e como ela funciona?",
+        "qual é a utilidade da memória ram em um dispositivo eletrônico?",
+        "poderia me explicar o que é memória ram?",
+        "por que a ram é necessária em um computador?",
+        "o que é a memória de acesso aleatório (ram) e qual é a sua função?",
+        "o que é ram em termos de hardware?",
+        "poderia me dizer o que é a memória ram em um computador?",
+        "o que é a ram e qual é a sua importância em um sistema de computador?",
+        "qual é a função da memória ram em um dispositivo eletrônico?",
+        "poderia me explicar qual é a utilidade da ram em um pc?",
+        "o que é a ram e por que ela é crucial em um computador?"
+      ],
+      "responses": [
+        "a memória RAM (Random Access Memory) é um tipo de memória volátil que permite que um computador armazene e acesse dados de forma rápida e aleatória. Ela desempenha um papel fundamental no desempenho geral do sistema."
+      ]
+    },
     {
       "tag": "o que é barramento do sistema",
       "patterns": [
@@ -360,6 +360,34 @@
       ],
       "responses": [
         "Enviamos a pergunta ao tutor e logo mais ele responderá"
+      ]
+    },
+    {
+      "tag": "desconhecido",
+      "patterns": [
+        "Qual é a cor do vento, você sabe?",
+        "Quantos anos tem o universo, alguma ideia?",
+        "Por que os gatos não voam, você sabe?",
+        "Onde fica a montanha mais alta do oceano, você sabe?",
+        "Quem ganhou a Copa do Mundo em 2025, você sabe?",
+        "Como posso viajar no tempo, alguma ideia?",
+        "Quantos planetas existem no Sistema Solar, você sabe?",
+        "Quem foi o primeiro humano na Terra, alguma ideia?",
+        "O que é um buraco negro, você sabe?",
+        "Como posso falar com alienígenas, alguma ideia?",
+        "Onde fica a cidade perdida de Atlântida, você sabe?",
+        "Quem inventou a roda, alguma ideia?",
+        "Por que o céu é azul durante o dia e preto à noite, você sabe?",
+        "O que acontece quando um imortal é mordido por um vampiro, alguma ideia?",
+        "Como posso me tornar invisível, você sabe?",
+        "Onde está o final do arco-íris, alguma ideia?",
+        "Quem construiu as pirâmides do Egito, você sabe?",
+        "Por que os pássaros não caem quando estão dormindo, alguma ideia?",
+        "O que aconteceria se eu caísse em um buraco negro, você sabe?",
+        "Como posso voar, alguma ideia?"
+      ],
+      "responses": [
+        "Enviamos a pergunta ao tutor e em dois dias ele responderá"
       ]
     }
   ]

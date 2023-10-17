@@ -6,7 +6,7 @@ import torch
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
-from database import save_unanswered_question, exibir_perguntas_nao_respondidas
+from database import save_unanswered_question, exibir_perguntas_nao_respondidas, save_feedback
 from transformers import AutoModel, AutoTokenizer
 from model import BERT_Arch
 import re
@@ -137,9 +137,10 @@ if __name__ == "__main__":
     print("Let's chat! (type 'quit' to exit)")
     username = 'dsadas'
     registration = 2323
+    rating = ''
     while True:
         # sentence = "do you use credit cards?"
         sentence = input("You: ")
         if sentence == "quit":
             break
-        resp = get_response(sentence, username, registration)
+        resp = get_response(sentence, username, registration, rating)
