@@ -13,6 +13,9 @@ import transformers
 import sklearn
 import pandas as pd
 
+class Obj:
+    pass
+
 app = Flask(__name__)
 app.secret_key = 'ChaveSecreta'
 
@@ -173,7 +176,12 @@ def predict():
     text = text.lower()
     username = session.get('username')
     registration = session.get('registration')
-    session['history'].append('{ name: '+username+', message: '+text+', datetime: '+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+'}')
+
+    session.get('history').append({
+            "name": username,
+            "message": text,
+            "datetime": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
 
     response_and_tag = get_response(text, username, registration)
     if response_and_tag is not None:
@@ -183,11 +191,25 @@ def predict():
         session['result'] = response
         session['tag'] = tag
         message = {"answer": response}
-        session['history'].append('{ name: "chatbot", message: ' + response + ', datetime: ' + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + '}')
+
+        session.get('history').append({
+            "name": "Carol",
+            "message": response,
+            "datetime": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
+
         return jsonify(message)
     else:
         # Lógica para tratar o caso em que get_response() retorna None
-        message = {"answer": "Desculpe, ocorreu um erro ao processar a pergunta."}
+        response = "Desculpe, ocorreu um erro ao processar a pergunta."
+
+        session.get('history').append({
+            "name": "Carol",
+            "message": response,
+            "datetime": datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        })
+
+        message = {"answer": response}
         return jsonify(message)
 
 
